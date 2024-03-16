@@ -1,12 +1,12 @@
 .PHONY: all clean run
 
-all: build/Ivs_Calculator
+all: build/Ivs_Calculator dependencies
 
 build/Ivs_Calculator: build/Makefile
 	cd build && make
 
 
-build/Makefile: CMakeLists.txt
+build/Makefile: CMakeLists.txt 
 	cmake -S . -B ./build -G "Unix Makefiles"
 
 clean:
@@ -15,3 +15,5 @@ clean:
 run: build/Ivs_Calculator
 	cd build && ./Ivs_Calculator
 
+dependencies: 
+	sudo apt install -y qt6-base-dev cmake
