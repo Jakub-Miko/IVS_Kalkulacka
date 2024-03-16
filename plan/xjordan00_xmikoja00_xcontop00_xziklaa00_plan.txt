@@ -1,0 +1,53 @@
+Sprava verzii: Git
+Hosting: Github
+Informacie ako sa dostat na repozitar: https://github.com/Jakub-Miko/IVS_Kalkulacka (email ivs.kontrola@gmail.com bol pridany ako collaborator)
+master branch je protected proti priamym pushom. Treba si vytvorit feature branch a pull request
+
+Programova Dokumentacia: Doxygen
+
+Komunikacne kanaly:
+	Discord
+		pre priamu komunikaciu a konzultacie
+	Github Discussions
+		pre diskusie o dolezitych rozhodnutiach pri vyvoji
+	Doodle
+		pre rozhodnutia o terminoch meetingov
+	Pravidla pre komunikaciu
+		priebezne kontrolovanie discordu a diskusnych for (do 1 dna)
+		dodrziavanie relevancie obsahu na danych komunikacnych kanaloch (diskusie na github, osobna komunikacia na discord)
+		
+
+xmikoja00: 
+	sprava repozitara
+	Vlastne komponenty do UI
+		audio support
+
+xjordan00:
+	Testy
+	Dokumentacia
+
+xcontop00:
+	UI
+	Logika za UI
+
+xziklaa00:
+	Matematicka kniznica
+	Profiling
+
+
+Stanovene terminy (Milestones)
+	Vytvorenie repozitara - 16.3.2024
+	Navrh matematickej kniznice (header) - 21.3.2024
+	testy matematickej kniznice (tdd) - 25.3.2024
+	Profiling - 25.3.2024
+	zakladne vlastne komponenty do UI - 21.3.2024
+	UI - 1.4.2024
+	dokoncenie matematickej kniznice - 5.4.2024
+	Logika za UI - 12.4.2024
+	audio support - 4.4.2024
+	dokoncenie testov - 18.4.2024
+	dokumentacia - 24.4.2024
+	
+
+
+
