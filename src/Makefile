@@ -1,4 +1,4 @@
-.PHONY: all clean run
+.PHONY: all clean run dependencies
 
 all: build/Ivs_Calculator dependencies
 
