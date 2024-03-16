@@ -12,6 +12,6 @@ build/Makefile: CMakeLists.txt
 clean:
 	rm -rf ./build
 	git clean -dfX
-run:
+run: build/Ivs_Calculator
 	cd build && ./Ivs_Calculator
 
