@@ -1,6 +1,6 @@
 .PHONY: all clean run dependencies
 
-all: build/Ivs_Calculator dependencies
+all: dependencies build/Ivs_Calculator 
 
 build/Ivs_Calculator: build/Makefile
 	cd build && make
