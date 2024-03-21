@@ -1,51 +1,51 @@
 #pragma once
 
 /**
- * @param A First number
- * @param B Second number
+ * @param a First number
+ * @param b Second number
  * @return Sum of 2 numbers
 */
-long double Add(long double A, long double B);
+long double Add(long double a, long double b);
 
 /** 
- * @param A Minuend
- * @param B Subtrahend
+ * @param a Minuend
+ * @param b Subtrahend
  * @return Subtraction of 2 numbers
 */
-long double Sub(long double A, long double B);
+long double Sub(long double a, long double b);
 
 /**
- * @param A First factor
- * @param B Second factor
+ * @param a First factor
+ * @param b Second factor
  * @return Multiplication of 2 numbers
 */
-long double Mult(long double A, long double B);
+long double Mult(long double a, long double b);
 
 /**
- * @param A Numerator 
- * @param B Denominator
+ * @param a Numerator 
+ * @param b Denominator
  * @return Division of 2 numbers
 */
-long double Div(long double A, long double B);
+long double Div(long double a, long double b);
 
 /**
- * @param N (natural) Number
- * @return Multiplication of numbers from 1 to N
+ * @param n (natural) Number
+ * @return Multiplication of numbers from 1 to n
 */
-long unsigned int Factorial(long unsigned int N);
+unsigned long Factorial(unsigned long n);
 
 /**
- * @param A Base number
- * @param N Exponent (natural number)
- * @return Repeated multiplication of the number "A" N-times
+ * @param a Base number
+ * @param n Exponent (natural number)
+ * @return a to the power of n
 */
-long double Power(long double A, long unsigned int N);
+long double Power(long double a, unsigned long n);
 
 /**
- * @param A Radicand (If "N" is even, "A" has to be positive)
- * @param N Index (natural number)
- * @return A number which, when multiplied by itself N-times, gives the original number
+ * @param a Radicand (If "N" is even, "A" has to be positive)
+ * @param n Index (natural number)
+ * @return n-th root of number a 
 */
-long double Root(long double A, long unsigned int N);
+long double Root(long double a, unsigned long n);
 
 
