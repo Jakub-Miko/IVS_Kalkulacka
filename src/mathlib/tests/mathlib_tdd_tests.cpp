@@ -92,3 +92,14 @@ TEST(FACTORIAL){
     EXPECT_ANY_THROW(Factorial(0));
     EXPECT_ANY_THROW(Factorial(-42));
 }
+
+TEST(POWER){
+    EXPECT_DOUBLE_EQ(Power(2, 10), 1024);
+    EXPECT_DOUBLE_EQ(Power(34, 5), 45435424);
+    EXPECT_DOUBLE_EQ(Power(42, 0), 1);
+    EXPECT_DOUBLE_EQ(Power(-42, 4), 3111696);
+    EXPECT_DOUBLE_EQ(Power(-42, 5), −130691232);
+    EXPECT_DOUBLE_EQ(Power(42, -2), 0.000566893);
+}
+
+
