@@ -76,7 +76,7 @@ TEST(DIV, natural_nubers){
 TEST(DIV, whole_numbers){
     EXPECT_DOUBLE_EQ(Div(-2233, 445), −5.017977528);
     EXPECT_DOUBLE_EQ(Div(-55430, -123), 450.650406504);
-    EXPECT_THROW(Div(34, 0), std::division_by_zero);
+    EXPECT_ANY_THROW(Div(34, 0));
 }
 
 TEST(DIV, real_numbers){
@@ -85,4 +85,10 @@ TEST(DIV, real_numbers){
     EXPECT_DOUBLE_EQ(Div(1, -334.45), −0.002989984);
 }
 
-
+TEST(FACTORIAL){
+    EXPECT_EQ(Factorial(5), 120);
+    EXPECT_EQ(Factorial(1), 1);
+    EXPECT_EQ(Factorial(42), 1405006117752879898543142606244511569936384000000000); //might need further specifications
+    EXPECT_ANY_THROW(Factorial(0));
+    EXPECT_ANY_THROW(Factorial(-42));
+}
