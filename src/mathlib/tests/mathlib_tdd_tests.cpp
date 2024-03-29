@@ -19,7 +19,7 @@ TEST(ADD, whole_numbers){
     EXPECT_DOUBLE_EQ(Add(-2, 3), 1);
     EXPECT_DOUBLE_EQ(Add(-4, -5), -9);
     EXPECT_DOUBLE_EQ(Add(-100, 100), 0);
-    EXPECT_DOUBLE_EQ(Add(-4556, -23454), −28010);
+    EXPECT_DOUBLE_EQ(Add(-4556, -23454), -28010);
 }
 
 TEST(ADD, real_numbers){
@@ -39,7 +39,7 @@ TEST(SUB, whole_numbers){
     EXPECT_DOUBLE_EQ(Sub(-23, 44), -67);
     EXPECT_DOUBLE_EQ(Sub(43, -23), 67);
     EXPECT_DOUBLE_EQ(Sub(-122345, 22345), -144690);
-    EXPECT_DOUBLE_EQ(Sub(2234586, 3335467), −1100881);
+    EXPECT_DOUBLE_EQ(Sub(2234586, 3335467), -1100881);
 }
 
 TEST(SUB, real_numbers){
