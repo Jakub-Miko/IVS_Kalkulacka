@@ -1,9 +1,9 @@
-.PHONY: all clean run dependencies
+.PHONY: all clean run dependencies build/Ivs_Calculator
 
 all: dependencies build/Ivs_Calculator 
 
 build/Ivs_Calculator: build/Makefile
-	cd build && make
+	cd build && make --no-print-directory
 
 
 build/Makefile: CMakeLists.txt 
