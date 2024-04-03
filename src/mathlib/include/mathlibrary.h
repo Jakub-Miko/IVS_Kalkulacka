@@ -5,12 +5,12 @@ namespace constants
     /**
      * Ludolf's number
     */
-    constexpr double const_pi = M_PI;
+    constexpr double const_pi = 3.14159265358979323846;
 
     /**
      * Euler's number
     */
-    constexpr double const_e = M_E;
+    constexpr double const_e = 2.7182818284590452354;
 
     /**
      * Planck's constant
