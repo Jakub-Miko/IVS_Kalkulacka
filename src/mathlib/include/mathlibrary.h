@@ -1,5 +1,28 @@
 #pragma once
 
+namespace constants 
+{
+    /**
+     * Ludolf's number
+    */
+    constexpr double const_pi = 3.14159265358979323846;
+
+    /**
+     * Euler's number
+    */
+    constexpr double const_e = 2.7182818284590452354;
+
+    /**
+     * Planck's constant
+    */
+    constexpr double const_h = 6.62607015e-34;
+
+    /**
+     * Boltzmann's constant
+    */
+    constexpr double const_k = 1.380649e-23;
+}
+
 /**
  * @param a First number
  * @param b Second number
@@ -48,4 +71,14 @@ long double Power(long double a, unsigned long n);
 */
 long double Root(long double a, unsigned long n);
 
+/**
+ * @param a Natural number
+ * @return Natural logarithm of number a
+*/
+unsigned long ln(unsigned long a); 
+
+/**
+ * @return Positive number
+*/
+long double AbsVal(long double a);
 
