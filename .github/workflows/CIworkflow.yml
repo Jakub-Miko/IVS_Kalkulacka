@@ -1,0 +1,25 @@
+on: 
+  pull_request
+
+jobs:
+  CI_tests:
+    runs-on: ubuntu-22.04
+    name: CI-Tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.5.0
+        id: cache
+        with:
+          key: docker-${{ runner.os }}-${{ steps.tests.uses }}
+      - name: Execute Tests
+        id: tests
+        run: docker run --rm -v ${{ github.workspace }}:/github/workspace jakubmiko/ivskal_ci_tests:v0.5
+        timeout-minutes: 3
+      - name: Output Artifact
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: workspace_artifacts
+          path: ${{ github.workspace }}/artifacts
