@@ -80,7 +80,7 @@ TEST(DIV, whole_numbers){
 }
 
 TEST(DIV, real_numbers){
-    EXPECT_TRUE((Div(3345.556, 2234.90)>=1.49696)&&(Div(3345.556, 2234.90)>=1.49697));
+    EXPECT_TRUE((Div(3345.556, 2234.90)>=1.49696)&&(Div(3345.556, 2234.90)<=1.49697));
     EXPECT_TRUE((Div(-325.5554, 0.332)<=-980.58855)&&(Div(-325.5554, 0.332)>=-980.58856));
     EXPECT_TRUE((Div(1, -334.45)<=-0.00298)&&(Div(1, -334.45)>=-0.00299));
 }
@@ -88,7 +88,7 @@ TEST(DIV, real_numbers){
 TEST(FACTORIAL, suite){
     EXPECT_EQ(Factorial(5), 120);
     EXPECT_EQ(Factorial(1), 1);
-    EXPECT_ANY_THROW(Factorial(0));
+    EXPECT_EQ(Factorial(0), 1);
 }
 
 TEST(POWER, suite){
