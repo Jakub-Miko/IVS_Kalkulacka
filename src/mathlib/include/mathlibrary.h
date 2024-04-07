@@ -75,7 +75,7 @@ long double Root(long double a, unsigned long n);
  * @param a Natural number
  * @return Natural logarithm of number a
 */
-unsigned long ln(unsigned long a); 
+long double ln(unsigned long a); 
 
 /**
  * @return Positive number

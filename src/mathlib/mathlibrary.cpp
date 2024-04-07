@@ -30,7 +30,7 @@ unsigned long Factorial(unsigned long n)
     if (n == 0 || n == 1) {
         return 1;
     }
-    unsigned long result = 1;
+    long double result = 1;
     while (n > 1) {
         result *= n;
         n--;
@@ -72,7 +72,7 @@ long double Root(long double a, unsigned long n)
     }
 }
 
-unsigned long ln(unsigned long a)
+long double ln(unsigned long a)
 {
     if (a <= 0) {
         throw std::runtime_error("Input must be a positive integer");

@@ -106,3 +106,4 @@ CMakeLists.txt.user*
 *.exe
 
 .vscode/settings.json
+build*
