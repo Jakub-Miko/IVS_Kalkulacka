@@ -1,0 +1,6 @@
+name: 'Tests'
+description: 'CI tests on pull request'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile' 
