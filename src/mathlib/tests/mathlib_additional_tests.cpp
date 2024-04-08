@@ -14,7 +14,7 @@ using namespace std;
 TEST(FACTORIAL, OF_Check){
     unsigned long max=1;
     long long int fact;
-    for (fact=1; fact=>ULONG_MAX/max; max++){
+    for (fact=1; fact>=ULONG_MAX/max; max++){
 	if (fact<0) break;
 	fact=fact*max;
     }
