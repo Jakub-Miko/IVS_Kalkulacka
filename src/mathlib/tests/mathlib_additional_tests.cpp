@@ -12,14 +12,16 @@
 using namespace std;
 
 TEST(FACTORIAL, OF_Check){
-    unsigned long max=1;
-    long long int fact;
-    for (fact=1; fact>=ULONG_MAX/max; max++){
-	if (fact<0) break;
-	fact=fact*max;
+    unsigned long min_OF=1;//lowest whole number that tha factorial function cannot take as an input
+    long long int fact;	   //factrial of min_OF
+/*This loop increments the value of min_OF until it's factrial overflows
+ *  or it exceeds the limits of ulong*/
+    for (fact=1; fact<=ULONG_MAX/min_OF; min_OF++){
+	if (fact<0) break;//if fact overflows the result is negative
+	fact=fact*min_OF;
     }
-    for(long i=max; i<100; i+=10){
-	EXPECT_ANY_THROW(Factorial(max));
+    for(long i=min_OF; i<100; i+=10){
+	EXPECT_ANY_THROW(Factorial(min_OF));
     }
 }
 
