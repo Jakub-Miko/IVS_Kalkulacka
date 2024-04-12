@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 namespace constants 
 {
     /**
@@ -53,29 +55,29 @@ long double Div(long double a, long double b);
 
 /**
  * @param n (natural) Number
- * @return Multiplication of numbers from 1 to n
+ * @return Multiplication of numbers from 1 to "n"
 */
-unsigned long Factorial(unsigned long n);
+std::uint64_t Factorial(std::uint64_t n);
 
 /**
  * @param a Base number
  * @param n Exponent (natural number)
- * @return a to the power of n
+ * @return "a" to the power of "n"
 */
-long double Power(long double a, unsigned long n);
+long double Power(long double a, std::uint64_t n);
 
 /**
- * @param a Radicand (If "N" is even, "A" has to be positive)
+ * @param a Radicand (If "n" is even, "a" has to be positive)
  * @param n Index (natural number)
- * @return n-th root of number a 
+ * @return n-th root of number "a" 
 */
-long double Root(long double a, unsigned long n);
+long double Root(long double a, std::uint64_t n);
 
 /**
- * @param a Natural number
- * @return Natural logarithm of number a
+ * @param a Positive number
+ * @return Natural logarithm of number "a"
 */
-unsigned long ln(unsigned long a); 
+long double ln(long double a);
 
 /**
  * @return Positive number
