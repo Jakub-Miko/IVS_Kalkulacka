@@ -25,23 +25,23 @@ long double Div(long double a, long double b)
     return a/b;
 }
 
-unsigned long Factorial(unsigned long n)
+std::uint64_t Factorial(std::uint64_t n)
 {
     if (n == 0 || n == 1) {
         return 1;
     }
-    unsigned long result = 1;
+    std::uint64_t result = 1;
     while (n > 1) {
+        if (UINT64_MAX / result < n) {
+            throw std::overflow_error("The number is too large to get the factorial");
+        }
         result *= n;
         n--;
-        if (std::isinf(result)) {
-            throw std::runtime_error("Result is infinite.");
-        }
     }
     return result;
 }
 
-long double Power(long double a, unsigned long n)
+long double Power(long double a, std::uint64_t n)
 {
     if (n == 0) {
         return 1;
@@ -57,7 +57,7 @@ long double Power(long double a, unsigned long n)
     return result;
 }
 
-long double Root(long double a, unsigned long n)
+long double Root(long double a, std::uint64_t n)
 {
     if ((n%2) == 0 && (a < 0)) {
         throw std::runtime_error("Negative number cannot have even root");
@@ -72,10 +72,10 @@ long double Root(long double a, unsigned long n)
     }
 }
 
-unsigned long ln(unsigned long a)
+long double ln(long double a)
 {
     if (a <= 0) {
-        throw std::runtime_error("Input must be a positive integer");
+        throw std::runtime_error("Input must be a positive number");
     }
     return std::log(a);
 }
