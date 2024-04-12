@@ -1,10 +1,12 @@
-.PHONY: all clean run dependencies build/Ivs_Calculator
+.PHONY: all clean run dependencies build/Ivs_Calculator pack
 
 all: dependencies build/Ivs_Calculator 
 
 build/Ivs_Calculator: build/Makefile
 	cd build && make --no-print-directory
 
+pack: build/Ivs_Calculator
+	cd build && cpack -G DEB
 
 build/Makefile: CMakeLists.txt 
 	cmake -S . -B ./build -G "Unix Makefiles"
