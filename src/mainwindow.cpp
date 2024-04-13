@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <QKeyEvent>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -64,3 +65,31 @@ void MainWindow::on_pushButton_cleardisp_released()
     ui->display->setText("");
 }
 
+void MainWindow::keyReleaseEvent(QKeyEvent * event)
+{
+    QString LabelNumber;
+    QString NextNumber;
+    if (event->key() == Qt::Key_0) {
+        NextNumber = "0";
+    } else if (event->key() == Qt::Key_1) {
+        NextNumber = "1";
+    } else if (event->key() == Qt::Key_2) {
+        NextNumber = "2";
+    } else if (event->key() == Qt::Key_3) {
+        NextNumber = "3";
+    } else if (event->key() == Qt::Key_4) {
+        NextNumber = "4";
+    } else if (event->key() == Qt::Key_5) {
+        NextNumber = "5";
+    } else if (event->key() == Qt::Key_6) {
+        NextNumber = "6";
+    } else if (event->key() == Qt::Key_7) {
+        NextNumber = "7";
+    } else if (event->key() == Qt::Key_8) {
+        NextNumber = "8";
+    } else if (event->key() == Qt::Key_9) {
+        NextNumber = "9";
+    }
+    LabelNumber = (ui->display->text() + NextNumber);
+    ui->display->setText(LabelNumber);
+}

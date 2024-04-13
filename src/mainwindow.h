@@ -20,6 +20,8 @@ public:
 private slots:
     void number_clicked();
 
+    void keyReleaseEvent(QKeyEvent *);
+
     void on_pushButton_backspace_released();
 
     void on_pushButton_clearfull_released();
