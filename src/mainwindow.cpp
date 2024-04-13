@@ -50,9 +50,6 @@ void MainWindow::on_pushButton_backspace_released()
     ui->display->setText(LabelNumber);
 }
 
-
-
-
 void MainWindow::on_pushButton_clearfull_released()
 {
     ui->display->setText("");
@@ -68,7 +65,7 @@ void MainWindow::on_pushButton_cleardisp_released()
 void MainWindow::keyReleaseEvent(QKeyEvent * event)
 {
     QString LabelNumber;
-    QString NextNumber;
+    QString NextNumber = "";
     if (event->key() == Qt::Key_0) {
         NextNumber = "0";
     } else if (event->key() == Qt::Key_1) {
@@ -89,6 +86,12 @@ void MainWindow::keyReleaseEvent(QKeyEvent * event)
         NextNumber = "8";
     } else if (event->key() == Qt::Key_9) {
         NextNumber = "9";
+    } else if (event->key() == Qt::Key_Backspace) {
+        LabelNumber = (ui->display->text());
+        LabelNumber.chop(1);
+        ui->display->setText(LabelNumber);
+    } else if (event->key() == Qt::Key_Delete) {
+        ui->display->setText("");
     }
     LabelNumber = (ui->display->text() + NextNumber);
     ui->display->setText(LabelNumber);
