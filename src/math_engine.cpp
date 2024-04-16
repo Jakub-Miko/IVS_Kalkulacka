@@ -4,7 +4,7 @@
 
 MathEngine::MathEngine() : context_stack()
 {
-    Context context;
+    Context context; 
     context.accumulator = 0;
     context.last_op = Operation::DEFAULT;
     context_stack.push(std::move(context));
@@ -12,6 +12,8 @@ MathEngine::MathEngine() : context_stack()
 
 void MathEngine::SendNumber(long double number)
 {
+    // based on the last submitted operation, perform a calculation with the accumulator and the input number
+    // and then save the result back into the accumulator
     long double result = 0;
     long double accumulator = context_stack.top().accumulator;
     switch (context_stack.top().last_op)
@@ -49,6 +51,7 @@ void MathEngine::SendNumber(long double number)
 
 void MathEngine::SendEquals()
 {
+    // Make sure to close all the paranthesis to get the final result
     while(context_stack.size() > 1) {
         context_stack.top().last_op = Operation::RESULT;
         EndContext();
@@ -88,19 +91,28 @@ void MathEngine::SendDivide()
 
 void MathEngine::SendFactorial()
 {
-     context_stack.top().accumulator = Factorial(context_stack.top().accumulator);
-    context_stack.top().last_op = Operation::RESULT;
+    // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
+    context_stack.top().accumulator = Factorial(context_stack.top().accumulator);
+    // After the calculation is complete, since no other operand is awaited
+    // we can consider the value to be a complete result
+    context_stack.top().last_op = Operation::RESULT; 
 }
 
 void MathEngine::Sendln()
 {
+    // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
     context_stack.top().accumulator = ln(context_stack.top().accumulator);
+    // After the calculation is complete, since no other operand is awaited
+    // we can consider the value to be a complete result
     context_stack.top().last_op = Operation::RESULT;
 }
 
 void MathEngine::SendAbsVal()
 {
+    // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
     context_stack.top().accumulator = AbsVal(context_stack.top().accumulator);
+    // After the calculation is complete, since no other operand is awaited
+    // we can consider the value to be a complete result
     context_stack.top().last_op = Operation::RESULT;
 }
 
@@ -116,6 +128,7 @@ bool MathEngine::IsAccumulatorResult() const
 
 bool MathEngine::IsResultAvailable() const
 {
+    // For a complete result, the accumulator result needs to be the only one (all paranthesis need to be closed)
     return (context_stack.size() == 1) && (context_stack.top().last_op == Operation::RESULT);
 }
 
@@ -138,6 +151,8 @@ void MathEngine::ResetAllContexts()
 
 void MathEngine::StartContext()
 {
+    // By moving the accumulator and last_op up the stack, we start a fresh calculations, 
+    // while retaining information about the current one.
     Context context;
     context.accumulator = 0;
     context.last_op = Operation::DEFAULT;
@@ -146,6 +161,8 @@ void MathEngine::StartContext()
 
 void MathEngine::EndContext()
 {
+    // After the paranthesis ends, we take the result of the paranthesis, and restore the original operation
+    // before the paranthesis, supplying the paranthesis result as an input
     if(context_stack.size() <= 1) {
         throw std::runtime_error("Can't pop default context");
     }
