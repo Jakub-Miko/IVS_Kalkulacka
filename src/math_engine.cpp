@@ -2,14 +2,19 @@
 #include <mathlibrary.h>
 #include <stdexcept>
 
-MathEngine::MathEngine() : last_op(Operation::DEFAULT), accumulator(0)
+MathEngine::MathEngine() : context_stack()
 {
+    Context context;
+    context.accumulator = 0;
+    context.last_op = Operation::DEFAULT;
+    context_stack.push(std::move(context));
 }
 
 void MathEngine::SendNumber(long double number)
 {
     long double result = 0;
-    switch (last_op)
+    long double accumulator = context_stack.top().accumulator;
+    switch (context_stack.top().last_op)
     {
     case Operation::ADD:
         result = accumulator + number;
@@ -33,57 +38,102 @@ void MathEngine::SendNumber(long double number)
         throw std::runtime_error("Unsupported mathematical operation");
         break;
     }
-    accumulator = result;
+    context_stack.top().accumulator = result;
 }
 
 void MathEngine::SendEquals()
 {
-    last_op = Operation::RESULT;
+    while(context_stack.size() > 1) {
+        context_stack.top().last_op = Operation::RESULT;
+        EndContext();
+    }
+    context_stack.top().last_op = Operation::RESULT;
 }
 
 void MathEngine::SendAdd()
 {
-    last_op = Operation::ADD;
+    context_stack.top().last_op = Operation::ADD;
 }
 
 void MathEngine::SendSubtract()
 {
-    last_op = Operation::SUBTRACT;
+    context_stack.top().last_op = Operation::SUBTRACT;
 }
 
 void MathEngine::SendMultiply()
 {
-    last_op = Operation::MULTIPLY;
+    context_stack.top().last_op = Operation::MULTIPLY;
 }
 
 void MathEngine::SendDivide()
 {
-    last_op = Operation::DIVIDE;
+    context_stack.top().last_op = Operation::DIVIDE;
 }
 
 void MathEngine::SendFactorial()
 {
-    last_op = Operation::FACTORIAL;
+     context_stack.top().accumulator = Factorial(context_stack.top().accumulator);
+    context_stack.top().last_op = Operation::RESULT;
 }
 
 void MathEngine::Sendln()
 {
-    accumulator = ln(accumulator);
-    last_op = Operation::RESULT;
+    context_stack.top().accumulator = ln(context_stack.top().accumulator);
+    context_stack.top().last_op = Operation::RESULT;
 }
 
 void MathEngine::SendAbsVal()
 {
-    accumulator = AbsVal(accumulator);
-    last_op = Operation::RESULT;
+    context_stack.top().accumulator = AbsVal(context_stack.top().accumulator);
+    context_stack.top().last_op = Operation::RESULT;
 }
 
 long double MathEngine::GetAccumulator() const
 {
-    return accumulator;
+    return context_stack.top().accumulator;
 }
 
 bool MathEngine::IsAccumulatorResult() const
 {
-    return last_op == Operation::RESULT;
+    return context_stack.top().last_op == Operation::RESULT;
+}
+
+bool MathEngine::IsResultAvailable() const
+{
+    return (context_stack.size() == 1) && (context_stack.top().last_op == Operation::RESULT);
+}
+
+void MathEngine::ClearAccumulator()
+{
+    context_stack.top().accumulator = 0;
+    context_stack.top().last_op = Operation::DEFAULT;
+}
+
+void MathEngine::ResetAllContexts()
+{
+    while(context_stack.size() > 0) {
+        context_stack.pop();
+    }
+    Context context;
+    context.accumulator = 0;
+    context.last_op = Operation::DEFAULT;
+    context_stack.push(std::move(context));
+}
+
+void MathEngine::StartContext()
+{
+    Context context;
+    context.accumulator = 0;
+    context.last_op = Operation::DEFAULT;
+    context_stack.push(std::move(context));
+}
+
+void MathEngine::EndContext()
+{
+    if(context_stack.size() <= 1) {
+        throw std::runtime_error("Can't pop default context");
+    }
+    long double accumulator_temp = context_stack.top().accumulator;
+    context_stack.pop();
+    SendNumber(accumulator_temp);
 }
