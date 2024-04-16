@@ -5,7 +5,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow), mode_choice(true)
 {
     ui->setupUi(this);
     setWindowTitle("E-Calculator");
@@ -108,5 +108,14 @@ void MainWindow::on_actionAbout_triggered()
 {
     about_window = new about(this);
     about_window->show();
+}
+
+
+
+void MainWindow::on_pushButton_mode_released()
+{
+    ui->MOD_container->setCurrentIndex(mode_choice);
+    if(mode_choice) mode_choice = false;
+    else mode_choice = true;
 }
 

@@ -34,9 +34,12 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_pushButton_mode_released();
+
 private:
     Ui::MainWindow *ui;
     settings *settings_window;
     about *about_window;
+    bool mode_choice;
 };
 #endif // MAINWINDOW_H
