@@ -91,6 +91,27 @@ TEST_F(MathEngineTests, ln) {
     EXPECT_DOUBLE_EQ(engine.GetAccumulator(), 1);
 }
 
+TEST_F(MathEngineTests, Power) {
+    engine.SendNumber(2);
+    engine.SendPower();
+    engine.SendNumber(16);
+    engine.SendEquals();
+    EXPECT_TRUE(engine.IsAccumulatorResult());
+    EXPECT_TRUE(engine.IsResultAvailable());
+    EXPECT_DOUBLE_EQ(engine.GetAccumulator(), 65536);
+}
+
+TEST_F(MathEngineTests, Root) {
+    engine.SendNumber(65536);
+    engine.SendRoot();
+    engine.SendNumber(16);
+    engine.SendEquals();
+    EXPECT_TRUE(engine.IsAccumulatorResult());
+    EXPECT_TRUE(engine.IsResultAvailable());
+    EXPECT_DOUBLE_EQ(engine.GetAccumulator(), 2);
+}
+
+
 TEST_F(MathEngineTests, Braces) {
     engine.SendNumber(constants::const_e);
     engine.Sendln();

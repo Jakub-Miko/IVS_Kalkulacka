@@ -17,16 +17,22 @@ void MathEngine::SendNumber(long double number)
     switch (context_stack.top().last_op)
     {
     case Operation::ADD:
-        result = accumulator + number;
+        result = Add(accumulator, number);
         break;
     case Operation::SUBTRACT:
-        result = accumulator - number;
+        result = Sub(accumulator, number);
         break;
     case Operation::MULTIPLY:
-        result = accumulator * number;
+        result = Mult(accumulator, number);
         break;
     case Operation::DIVIDE:
-        result = accumulator / number;
+        result = Div(accumulator, number);
+        break;
+    case Operation::POWER:
+        result = Power(accumulator, number);
+        break;
+    case Operation::ROOT:
+        result = Root(accumulator, number);
         break;
     case Operation::DEFAULT:
         result = number;
@@ -63,6 +69,16 @@ void MathEngine::SendSubtract()
 void MathEngine::SendMultiply()
 {
     context_stack.top().last_op = Operation::MULTIPLY;
+}
+
+void MathEngine::SendPower()
+{
+    context_stack.top().last_op = Operation::POWER;
+}
+
+void MathEngine::SendRoot()
+{
+    context_stack.top().last_op = Operation::ROOT;
 }
 
 void MathEngine::SendDivide()

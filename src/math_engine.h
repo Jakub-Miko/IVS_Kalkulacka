@@ -12,7 +12,7 @@ public:
 
     /// @brief Type defining last active mathematical operation
     enum class Operation {
-        DEFAULT, RESULT, ADD, SUBTRACT, MULTIPLY, DIVIDE, FACTORIAL, LN, ABSVAL
+        DEFAULT, RESULT, ADD, SUBTRACT, MULTIPLY, DIVIDE, FACTORIAL, LN, ABSVAL, POWER, ROOT
     };
 
 public:
@@ -39,6 +39,12 @@ public:
 
     /// @brief User clicked the multiply button.
     void SendMultiply();
+
+    /// @brief User clicked the Power button
+    void SendPower();
+
+    /// @brief User clicked the Root button
+    void SendRoot();
 
     /// @brief User clicked the divide button.
     void SendDivide();
