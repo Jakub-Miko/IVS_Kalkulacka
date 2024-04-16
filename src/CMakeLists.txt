@@ -59,3 +59,4 @@ if(QT_VERSION_MAJOR EQUAL 6)
 endif()
 
 add_subdirectory(mathlib)
+target_link_libraries(Ivs_Calculator PRIVATE MathLib)
