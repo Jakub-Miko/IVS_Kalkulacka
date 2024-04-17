@@ -41,6 +41,7 @@ else()
 endif()
 
 target_link_libraries(Ivs_Calculator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_include_directories(Ivs_Calculator PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 set_target_properties(Ivs_Calculator PROPERTIES
     ${BUNDLE_ID_OPTION}
@@ -57,5 +58,24 @@ install(TARGETS Ivs_Calculator
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Ivs_Calculator)
 endif()
-
 add_subdirectory(mathlib)
+
+file(GLOB MATHENGINE_TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/math_engine.cpp" 
+"${CMAKE_CURRENT_SOURCE_DIR}/math_engine.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp"
+ "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.h")
+add_executable(
+    MathEngine_test
+    ${MATHENGINE_TEST_SOURCES}
+)
+target_include_directories(MathEngine_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(
+    MathEngine_test
+    GTest::gtest_main
+    MathLib
+)
+
+gtest_discover_tests(MathEngine_test)
+
+
+target_link_libraries(Ivs_Calculator PRIVATE MathLib)
