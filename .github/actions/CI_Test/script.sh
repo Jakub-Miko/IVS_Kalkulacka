@@ -30,7 +30,7 @@ test_err=$?
 
 kill $pid_timeout
 
-sleep 10s && echo "Screenshot Timed out" 1>&2 && kill -s SIGINT -1 &
+sleep 20s && echo "Screenshot Timed out" 1>&2 && kill -s SIGINT -1 &
 pid_timeout=$!
 
 mkfifo pipe

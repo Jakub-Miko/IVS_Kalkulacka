@@ -2,15 +2,21 @@
 #include "./ui_mainwindow.h"
 #include <QKeyEvent>
 #include <QDebug>
+#include <QMediaDevices>
+#include <QAudioDevice>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow), mode_choice(true)
+    , ui(new Ui::MainWindow), mode_choice(true), player(nullptr), output(nullptr)
 {
     ui->setupUi(this);
     setWindowTitle("E-Calculator");
 
-
+    if(!QMediaDevices::defaultAudioOutput().isNull()) {
+        output = new QAudioOutput(this);
+	    player = new QMediaPlayer(this);
+    }
+    
     connect(ui->pushButton_number_0, SIGNAL(released()), this, SLOT(number_clicked()));
     connect(ui->pushButton_number_1, SIGNAL(released()), this, SLOT(number_clicked()));
     connect(ui->pushButton_number_2, SIGNAL(released()), this, SLOT(number_clicked()));
@@ -27,7 +33,18 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    if(output) delete output;
+    if(player) delete player;
     delete ui;
+}
+
+void MainWindow::PlaySound()
+{
+    if(!output) return;
+    player->setSource(QUrl("qrc:/It's in the game.mp3"));
+    player->setAudioOutput(output);
+    output->setVolume(50);
+    player->play();
 }
 
 void MainWindow::number_clicked()
