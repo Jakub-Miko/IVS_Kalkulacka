@@ -31,7 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Ivs_Calculator
         MANUAL_FINALIZATION
         ${SOURCES}
-        settings.h settings.cpp settings.ui
+
         about.h about.cpp about.ui
     )
 else()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
+    <width>457</width>
     <height>610</height>
    </rect>
   </property>
@@ -557,7 +557,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>450</width>
+     <width>457</width>
      <height>25</height>
     </rect>
    </property>
@@ -565,7 +565,6 @@
     <property name="title">
      <string>Menu</string>
     </property>
-    <addaction name="actionSettings"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
@@ -578,11 +577,6 @@
    <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionSettings">
-   <property name="text">
-    <string>Settings</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>

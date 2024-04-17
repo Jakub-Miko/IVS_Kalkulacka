@@ -97,20 +97,12 @@ void MainWindow::keyReleaseEvent(QKeyEvent * event)
     ui->display->setText(LabelNumber);
 }
 
-void MainWindow::on_actionSettings_triggered()
-{
-    settings_window = new settings(this);
-    settings_window->show();
-}
-
 
 void MainWindow::on_actionAbout_triggered()
 {
     about_window = new about(this);
     about_window->show();
 }
-
-
 
 void MainWindow::on_pushButton_mode_released()
 {
