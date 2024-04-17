@@ -1,6 +1,13 @@
+/**
+ * @file stddev.cpp
+ * @brief Calculation of sample standard deviation
+ * 
+ * @author Alexander Žikla
+*/
+
 #include <iostream>
 #include <vector>
-#include "../mathlib/include/mathlibrary.h"
+#include "mathlibrary.h"
 
 
 /**
