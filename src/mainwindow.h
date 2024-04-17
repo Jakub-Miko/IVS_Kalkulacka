@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "settings.h"
 #include "about.h"
 
 QT_BEGIN_NAMESPACE
@@ -30,15 +29,12 @@ private slots:
 
     void on_pushButton_cleardisp_released();
 
-    void on_actionSettings_triggered();
-
     void on_actionAbout_triggered();
 
     void on_pushButton_mode_released();
 
 private:
     Ui::MainWindow *ui;
-    settings *settings_window;
     about *about_window;
     bool mode_choice;
 };
