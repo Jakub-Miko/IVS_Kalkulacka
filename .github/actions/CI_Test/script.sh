@@ -40,7 +40,7 @@ window_pid=$!
 /spinlock.sh "Window Opened" < pipe
 rm pipe
 sleep 0.5s
-import -window Calculator /github/workspace/artifacts/Window.png
+import -window E-Calculator /github/workspace/artifacts/Window.png
 sleep 0.5s
 kill $window_pid
 

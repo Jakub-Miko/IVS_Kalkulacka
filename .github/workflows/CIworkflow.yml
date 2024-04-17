@@ -15,7 +15,7 @@ jobs:
           key: docker-${{ runner.os }}-${{ steps.tests.uses }}
       - name: Execute Tests
         id: tests
-        run: docker run --rm -v ${{ github.workspace }}:/github/workspace jakubmiko/ivskal_ci_tests:v0.5
+        run: docker run --rm -v ${{ github.workspace }}:/github/workspace jakubmiko/ivskal_ci_tests:v0.6
         timeout-minutes: 3
       - name: Output Artifact
         if: success() || failure()
