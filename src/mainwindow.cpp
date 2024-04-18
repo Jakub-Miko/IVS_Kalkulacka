@@ -59,8 +59,7 @@ void MainWindow::number_clicked()
 }
 
 void AddNumber(Ui::MainWindow* ui, QString NextNumber) {
-    QString LabelNumber;
-    LabelNumber = (ui->display->text() + NextNumber);
+    QString LabelNumber = (ui->display->text() + NextNumber);
     ui->display->setText(LabelNumber);
 }
 
@@ -69,8 +68,15 @@ QString ReplaceString(QString Text, QString Find, QString Replace) {
     return Text;
 }
 
-void convert() {
+void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
+    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+    math.SendNumber(ld);
+}
 
+void ShowResult(Ui::MainWindow* ui, MathEngine& math) {
+    long double ld = math.GetAccumulator();
+    ui->equation->setText(ReplaceString(QString::number((double)ld,'g',40), ".", ","));
+    ui->display->setText("");
 }
 
 void MainWindow::on_pushButton_backspace_released()
@@ -199,12 +205,9 @@ void MainWindow::on_pushButton_mode_released()
 void MainWindow::on_pushButton_plus_released()
 {
     try {
-    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
-    math.SendNumber(ld);
-    math.SendAdd();
-    ld = math.GetAccumulator();
-    ui->equation->setText(QString::number((double)ld,'g',40));
-    ui->display->setText("");
+        SendNumberToEngine(ui, math);
+        math.SendAdd();
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
@@ -214,13 +217,9 @@ void MainWindow::on_pushButton_plus_released()
 void MainWindow::on_pushButton_minus_released()
 {
     try {
-        long double ld = std::strtold(ReplaceString(ui->display->text(), ".", ",").toLatin1().data(), nullptr);
-        //long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
-        math.SendNumber(ld);
+        SendNumberToEngine(ui, math);
         math.SendSubtract();
-        ld = math.GetAccumulator();
-        ui->equation->setText(QString::number((double)ld,'g',40));
-        ui->display->setText("");
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
@@ -230,13 +229,10 @@ void MainWindow::on_pushButton_minus_released()
 void MainWindow::on_pushButton_mul_released()
 {
     try {
-    math.SendNumber(1);
-    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
-    math.SendNumber(ld);
-    math.SendMultiply();
-    ld = math.GetAccumulator();
-    ui->equation->setText(QString::number((double)ld,'g',40));
-    ui->display->setText("");
+        math.SendNumber(1);
+        SendNumberToEngine(ui, math);
+        math.SendMultiply();
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
@@ -246,12 +242,9 @@ void MainWindow::on_pushButton_mul_released()
 void MainWindow::on_pushButton_div_released()
 {
     try {
-    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
-    math.SendNumber(ld);
-    math.SendDivide();
-    ld = math.GetAccumulator();
-    ui->equation->setText(QString::number((double)ld,'g',40));
-    ui->display->setText("");
+        SendNumberToEngine(ui, math);
+        math.SendDivide();
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
@@ -261,12 +254,9 @@ void MainWindow::on_pushButton_div_released()
 void MainWindow::on_pushButton_equals_released()
 {
     try {
-    long double ld = std::strtold(ReplaceString(ui->display->text(), ",", ".").toLatin1().data(), nullptr);
-    math.SendNumber(ld);
-    math.SendEquals();
-    ld = math.GetAccumulator();
-    ui->equation->setText(ReplaceString(QString::number((double)ld,'g',40), ".", ","));
-    ui->display->setText("");
+        SendNumberToEngine(ui, math);
+        math.SendEquals();
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
@@ -290,12 +280,9 @@ void MainWindow::on_pushButton_comma_released()
 void MainWindow::on_pushButton_root_released()
 {
     try {
-    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
-    math.SendNumber(ld);
-    math.SendRoot();
-    ld = math.GetAccumulator();
-    ui->equation->setText(QString::number((double)ld,'g',40));
-    ui->display->setText("");
+        SendNumberToEngine(ui, math);
+        math.SendRoot();
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
@@ -305,30 +292,48 @@ void MainWindow::on_pushButton_root_released()
 void MainWindow::on_pushButton_power_released()
 {
     try {
-    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
-    math.SendNumber(ld);
-    math.SendPower();
-    ld = math.GetAccumulator();
-    ui->equation->setText(QString::number((double)ld,'g',40));
-    ui->display->setText("");
+        SendNumberToEngine(ui, math);
+        math.SendPower();
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
 
 }
 
-
+// UNARY OPERATIONS
 void MainWindow::on_pushButton_abs_released()
 {
     try {
-    math.SendAbsVal();
-    long double ld = math.GetAccumulator();
-    ui->equation->setText(QString::number((double)ld,'g',40));
-    ui->display->setText("");
+        math.SendAbsVal();
+        ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         qDebug() << err.what();
     }
 }
+
+
+void MainWindow::on_pushButton_factorial_released()
+{
+    try {
+        math.SendFactorial();
+        ShowResult(ui, math);
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_log_released()
+{
+    try {
+        math.Sendln();
+        ShowResult(ui, math);
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
 
 
 void MainWindow::on_pushButton_pi_released()
@@ -358,6 +363,18 @@ void MainWindow::on_pushButton_k_released()
 void MainWindow::on_pushButton_h_released()
 {
     ui->display->setText(ReplaceString(QString::number((double)constants::const_h, 'F', 40),".", ","));
+
+}
+
+
+void MainWindow::on_pushButton_chngval_released()
+{
+    QString Displayed = ui->display->text();
+    if (Displayed[0] == '-') {
+        Displayed.remove(0,1);
+    } else
+        Displayed = "-" + Displayed;
+    ui->display->setText(Displayed);
 
 }
 
