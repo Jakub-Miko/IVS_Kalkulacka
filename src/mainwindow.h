@@ -67,6 +67,12 @@ private slots:
 
     void on_pushButton_h_released();
 
+    void on_pushButton_factorial_released();
+
+    void on_pushButton_log_released();
+
+    void on_pushButton_chngval_released();
+
 private:
     QMediaPlayer* player;
     QAudioOutput* output;
