@@ -5,6 +5,8 @@
 #include "about.h"
 #include "qaudiooutput.h"
 #include "qmediaplayer.h"
+#include "math_engine.h"
+#include "mathlibrary.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -37,11 +39,40 @@ private slots:
 
     void on_pushButton_mode_released();
 
+    void on_pushButton_plus_released();
+
+    void on_pushButton_minus_released();
+
+    void on_pushButton_mul_released();
+
+    void on_pushButton_div_released();
+
+    void on_pushButton_equals_released();
+
+    void on_pushButton_comma_released();
+
+    void on_pushButton_root_released();
+
+    void on_pushButton_power_released();
+
+    void on_pushButton_abs_released();
+
+    void on_pushButton_pi_released();
+
+    void on_pushButton_c_released();
+
+    void on_pushButton_e_released();
+
+    void on_pushButton_k_released();
+
+    void on_pushButton_h_released();
+
 private:
     QMediaPlayer* player;
     QAudioOutput* output;
     Ui::MainWindow *ui;
     about *about_window;
     bool mode_choice;
+    MathEngine math;
 };
 #endif // MAINWINDOW_H
