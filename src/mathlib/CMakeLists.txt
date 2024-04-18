@@ -16,4 +16,10 @@ target_link_libraries(
     MathLib
 )
 
+install(TARGETS MathLib
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
 gtest_discover_tests(MathLib_test)

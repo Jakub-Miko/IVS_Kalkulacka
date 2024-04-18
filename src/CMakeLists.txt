@@ -23,6 +23,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 file(GLOB SOURCES *.cpp *.h *.ui)
@@ -58,7 +60,14 @@ install(TARGETS Ivs_Calculator
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Ivs_Calculator)
 endif()
+
 add_subdirectory(mathlib)
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Team EEEEE")
+set(CPACK_PACKAGE_NAME "IVS_Calculator")
+set(CPACK_PACKAGE_VERSION_MAJOR 0)
+set(CPACK_PACKAGE_VERSION_MAJOR 1)
+set(CPACK_PACKAGE_DESCRIPTION "IVSCalculator from Team EEEEE")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6core6, libqt6gui6, libqt6core5compat6, libqt6widgets6, qt6-qpa-plugins")
 
 file(GLOB MATHENGINE_TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/math_engine.cpp" 
 "${CMAKE_CURRENT_SOURCE_DIR}/math_engine.h"
@@ -79,3 +88,4 @@ gtest_discover_tests(MathEngine_test)
 
 
 target_link_libraries(Ivs_Calculator PRIVATE MathLib)
+include(CPack)
