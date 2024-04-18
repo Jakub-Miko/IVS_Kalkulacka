@@ -27,7 +27,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_number_7, SIGNAL(released()), this, SLOT(number_clicked()));
     connect(ui->pushButton_number_8, SIGNAL(released()), this, SLOT(number_clicked()));
     connect(ui->pushButton_number_9, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_comma, SIGNAL(released()), this, SLOT(number_clicked()));
 
 }
 
@@ -59,6 +58,21 @@ void MainWindow::number_clicked()
 
 }
 
+void AddNumber(Ui::MainWindow* ui, QString NextNumber) {
+    QString LabelNumber;
+    LabelNumber = (ui->display->text() + NextNumber);
+    ui->display->setText(LabelNumber);
+}
+
+QString ReplaceString(QString Text, QString Find, QString Replace) {
+    Text.replace(Find, Replace);
+    return Text;
+}
+
+void convert() {
+
+}
+
 void MainWindow::on_pushButton_backspace_released()
 {
     QString LabelNumber;
@@ -70,7 +84,8 @@ void MainWindow::on_pushButton_backspace_released()
 void MainWindow::on_pushButton_clearfull_released()
 {
     ui->display->setText("");
-    ui->equation->setText("");
+    ui->equation->setText("0");
+    math.ResetAllContexts();
 }
 
 
@@ -80,38 +95,90 @@ void MainWindow::on_pushButton_cleardisp_released()
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent * event)
-{
-    QString LabelNumber;
-    QString NextNumber = "";
-    if (event->key() == Qt::Key_0) {
-        NextNumber = "0";
-    } else if (event->key() == Qt::Key_1) {
-        NextNumber = "1";
-    } else if (event->key() == Qt::Key_2) {
-        NextNumber = "2";
-    } else if (event->key() == Qt::Key_3) {
-        NextNumber = "3";
-    } else if (event->key() == Qt::Key_4) {
-        NextNumber = "4";
-    } else if (event->key() == Qt::Key_5) {
-        NextNumber = "5";
-    } else if (event->key() == Qt::Key_6) {
-        NextNumber = "6";
-    } else if (event->key() == Qt::Key_7) {
-        NextNumber = "7";
-    } else if (event->key() == Qt::Key_8) {
-        NextNumber = "8";
-    } else if (event->key() == Qt::Key_9) {
-        NextNumber = "9";
-    } else if (event->key() == Qt::Key_Backspace) {
-        LabelNumber = (ui->display->text());
-        LabelNumber.chop(1);
-        ui->display->setText(LabelNumber);
-    } else if (event->key() == Qt::Key_Delete) {
-        ui->display->setText("");
+{   //SWITCH CASE FOR NUMBERS
+    switch(event->key()) {
+    case Qt::Key_0:
+        AddNumber(ui, "0");
+        break;
+    case Qt::Key_1:
+        AddNumber(ui, "1");
+        break;
+    case Qt::Key_2:
+        AddNumber(ui, "2");
+        break;
+    case Qt::Key_3:
+        AddNumber(ui, "3");
+        break;
+    case Qt::Key_4:
+        AddNumber(ui, "4");
+        break;
+    case Qt::Key_5:
+        AddNumber(ui, "5");
+        break;
+    case Qt::Key_6:
+        AddNumber(ui, "6");
+        break;
+    case Qt::Key_7:
+        AddNumber(ui, "7");
+        break;
+    case Qt::Key_8:
+        AddNumber(ui, "8");
+        break;
+    case Qt::Key_9:
+        AddNumber(ui, "9");
+        break;
+    case Qt::Key_Comma:
+    case Qt::Key_Period:
+        on_pushButton_comma_released();
+        break;
+    case Qt::Key_Backspace:
+    {
+        QString DisplayedWithoutLast = ui->display->text();
+        DisplayedWithoutLast.chop(1);
+        ui->display->setText(DisplayedWithoutLast);
+        break;
     }
-    LabelNumber = (ui->display->text() + NextNumber);
-    ui->display->setText(LabelNumber);
+    case Qt::Key_Delete:
+        ui->display->setText("");
+        break;
+    }
+
+    // SWITCH CASES FOR OPERATIONS
+    if (ui->display->text() == "") {
+        qInfo("Pekne menis znamienko :3");
+        switch(event->key()) {
+        case Qt::Key_Plus:
+            math.SendAdd();
+            break;
+        case Qt::Key_Minus:
+            math.SendSubtract();
+            break;
+        case Qt::Key_Asterisk:
+            math.SendMultiply();
+            break;
+        case Qt::Key_Slash:
+            math.SendDivide();
+            break;
+        }
+    } else
+    switch(event->key()) {
+    case Qt::Key_Plus:
+        on_pushButton_plus_released();
+        break;
+    case Qt::Key_Minus:
+        on_pushButton_minus_released();
+        break;
+    case Qt::Key_Asterisk:
+        qInfo("More");
+        on_pushButton_mul_released();
+        break;
+    case Qt::Key_Slash:
+        on_pushButton_div_released();
+        break;
+    case Qt::Key_Enter:
+        on_pushButton_equals_released();
+        break;
+    }
 }
 
 
@@ -126,5 +193,171 @@ void MainWindow::on_pushButton_mode_released()
     ui->MOD_container->setCurrentIndex(mode_choice);
     if(mode_choice) mode_choice = false;
     else mode_choice = true;
+}
+
+
+void MainWindow::on_pushButton_plus_released()
+{
+    try {
+    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+    math.SendNumber(ld);
+    math.SendAdd();
+    ld = math.GetAccumulator();
+    ui->equation->setText(QString::number((double)ld,'g',40));
+    ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_minus_released()
+{
+    try {
+        long double ld = std::strtold(ReplaceString(ui->display->text(), ".", ",").toLatin1().data(), nullptr);
+        //long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+        math.SendNumber(ld);
+        math.SendSubtract();
+        ld = math.GetAccumulator();
+        ui->equation->setText(QString::number((double)ld,'g',40));
+        ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_mul_released()
+{
+    try {
+    math.SendNumber(1);
+    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+    math.SendNumber(ld);
+    math.SendMultiply();
+    ld = math.GetAccumulator();
+    ui->equation->setText(QString::number((double)ld,'g',40));
+    ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_div_released()
+{
+    try {
+    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+    math.SendNumber(ld);
+    math.SendDivide();
+    ld = math.GetAccumulator();
+    ui->equation->setText(QString::number((double)ld,'g',40));
+    ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_equals_released()
+{
+    try {
+    long double ld = std::strtold(ReplaceString(ui->display->text(), ",", ".").toLatin1().data(), nullptr);
+    math.SendNumber(ld);
+    math.SendEquals();
+    ld = math.GetAccumulator();
+    ui->equation->setText(ReplaceString(QString::number((double)ld,'g',40), ".", ","));
+    ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_comma_released()
+{
+    QString displayed = ui->display->text();
+    if (displayed == ""){
+        displayed = "0";
+    }
+    if (!displayed.contains(",")) {
+        displayed = displayed + ",";
+        ui->display->setText(displayed);
+    }
+}
+
+
+
+void MainWindow::on_pushButton_root_released()
+{
+    try {
+    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+    math.SendNumber(ld);
+    math.SendRoot();
+    ld = math.GetAccumulator();
+    ui->equation->setText(QString::number((double)ld,'g',40));
+    ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_power_released()
+{
+    try {
+    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+    math.SendNumber(ld);
+    math.SendPower();
+    ld = math.GetAccumulator();
+    ui->equation->setText(QString::number((double)ld,'g',40));
+    ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+
+}
+
+
+void MainWindow::on_pushButton_abs_released()
+{
+    try {
+    math.SendAbsVal();
+    long double ld = math.GetAccumulator();
+    ui->equation->setText(QString::number((double)ld,'g',40));
+    ui->display->setText("");
+    } catch(const std::runtime_error& err) {
+        qDebug() << err.what();
+    }
+}
+
+
+void MainWindow::on_pushButton_pi_released()
+{
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_pi, 'F', 40), ".", ","));
+}
+
+
+void MainWindow::on_pushButton_c_released()
+{
+    //ui->display->setText(QString::number((double)constants::const_c, 'F', 40));
+}
+
+
+void MainWindow::on_pushButton_e_released()
+{
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_e, 'F', 40),".", ","));
+}
+
+
+void MainWindow::on_pushButton_k_released()
+{
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_k, 'F', 40),".", ","));
+}
+
+
+void MainWindow::on_pushButton_h_released()
+{
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_h, 'F', 40),".", ","));
+
 }
 
