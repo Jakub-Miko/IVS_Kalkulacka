@@ -1,3 +1,8 @@
+/** @file svgbutton.h
+ * @brief Custom PushButton for svg rendering with hover effects
+ *
+ * @author Jakub Miko
+*/
 #include "svgbutton.h"
 #include <QtSvgWidgets/QtSvgWidgets>
 #include <QMediaPlayer>
@@ -23,8 +28,8 @@ void SvgButton::SetColor(const QVariant& color)
 
 void SvgButton::SetPath(QString path)
 {
-    svg_renderer->load(QString(":/resources/") + this->path() + QString(".svg"));
-    int margin = std::abs(width() - height()) /2;
+    svg_renderer->load(QString(":/resources/") + this->path() + QString(".svg")); // Loads the svg from the Resource file
+    int margin = std::abs(width() - height()) / 2; ///< margin used for maintaining the aspect ration
     QRect res;
     if(width() >height()) {
         res = QRect(margin ,0, height(), height());
@@ -34,13 +39,13 @@ void SvgButton::SetPath(QString path)
 
     }
     QImage image(res.size(),QImage::Format_A2BGR30_Premultiplied);
-    image.fill(Qt::GlobalColor::transparent);
+    image.fill(Qt::GlobalColor::transparent); // Clear the canvas
     QPainter painter(&image);
     painter.setRenderHint(QPainter::Antialiasing , true);
     painter.setRenderHint(QPainter::SmoothPixmapTransform,true);
 
-    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    svg_renderer->render(&painter,QRectF(0 ,0, res.width(), res.height()));
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver); // make sure both alpha and color channels are written
+    svg_renderer->render(&painter,QRectF(0 ,0, res.width(), res.height())); // render the svg
     this->image = image;
     painter.end();
 }
@@ -48,7 +53,7 @@ void SvgButton::SetPath(QString path)
 
 void SvgButton::paintEvent(QPaintEvent *event)
 {
-
+    // Calculate the image size, maintaining the aspect ratio
     int margin = std::abs(width() - height()) /2;
     QRect res;
     if(width() >height()) {
@@ -60,9 +65,11 @@ void SvgButton::paintEvent(QPaintEvent *event)
     }
 
     QPainter painter(&image);
-    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    painter.fillRect(QRect(0,0,width(), height()), target_color);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceIn); // Make only the color channel is used and the existing alpha(svg image) is used as a mask
+    painter.fillRect(QRect(0,0,width(), height()), target_color); // the rectangle with the desired color is masked in the shaped of the svg contained in the alpha channel
     painter.end();
+
+    // Draw the canvas into the widget surface
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing , true);
     painter.setRenderHint(QPainter::SmoothPixmapTransform,true);
@@ -79,7 +86,7 @@ void SvgButton::paintEvent(QPaintEvent *event)
 
 void SvgButton::resizeEvent(QResizeEvent *event)
 {
-
+    // Resize the image, and rerender the svg for the new resolution
     int margin = std::abs(width() - height()) /2;
     QRect res;
     if(width() >height()) {
@@ -123,6 +130,7 @@ void SvgButton::LeaveHover()
 
 bool SvgButton::event(QEvent *event)
 {
+    // Capture hover events to launch animations
     if(event->type() == QEvent::Type::Enter) {
         EnterHover();
         //qDebug() << "Enter";
@@ -161,6 +169,8 @@ void SvgButton::setColor_default(const QColor &newColor_default)
     if (m_color_default == newColor_default)
         return;
     m_color_default = newColor_default;
+    target_color = newColor_default;
+    animation.setStartValue(target_color);
     emit color_default_Changed();
 }
 
