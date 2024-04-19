@@ -1,3 +1,5 @@
+#define PRECISION_OF_NUMBER 10
+
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QKeyEvent>
@@ -54,7 +56,7 @@ void MainWindow::number_clicked()
 
     LabelNumber = (ui->display->text() + Button->text());
     ui->display->setText(LabelNumber);
-    ui->display->setAlignment(Qt::AlignRight);
+    //ui->display->setAlignment(Qt::AlignRight);
 
 }
 
@@ -69,13 +71,13 @@ QString ReplaceString(QString Text, QString Find, QString Replace) {
 }
 
 void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
-    long double ld = std::strtold(ui->display->text().toLatin1().data(),nullptr);
+    long double ld = std::strtold(ReplaceString(ui->display->text(), ",", ".").toLatin1().data(),nullptr);
     math.SendNumber(ld);
 }
 
 void ShowResult(Ui::MainWindow* ui, MathEngine& math) {
     long double ld = math.GetAccumulator();
-    ui->equation->setText(ReplaceString(QString::number((double)ld,'g',40), ".", ","));
+    ui->equation->setText(ReplaceString(QString::number((double)ld,'F', PRECISION_OF_NUMBER), ".", ","));
     ui->display->setText("");
 }
 
@@ -338,31 +340,31 @@ void MainWindow::on_pushButton_log_released()
 
 void MainWindow::on_pushButton_pi_released()
 {
-    ui->display->setText(ReplaceString(QString::number((double)constants::const_pi, 'F', 40), ".", ","));
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_pi, 'F', PRECISION_OF_NUMBER*2), ".", ","));
 }
 
 
 void MainWindow::on_pushButton_c_released()
 {
-    //ui->display->setText(QString::number((double)constants::const_c, 'F', 40));
+    //ui->display->setText(QString::number((double)constants::const_c, 'F', PRECISION_OF_NUMBER));
 }
 
 
 void MainWindow::on_pushButton_e_released()
 {
-    ui->display->setText(ReplaceString(QString::number((double)constants::const_e, 'F', 40),".", ","));
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_e, 'F', PRECISION_OF_NUMBER*2),".", ","));
 }
 
 
 void MainWindow::on_pushButton_k_released()
 {
-    ui->display->setText(ReplaceString(QString::number((double)constants::const_k, 'F', 40),".", ","));
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_k, 'F', PRECISION_OF_NUMBER*2),".", ","));
 }
 
 
 void MainWindow::on_pushButton_h_released()
 {
-    ui->display->setText(ReplaceString(QString::number((double)constants::const_h, 'F', 40),".", ","));
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_h, 'F', PRECISION_OF_NUMBER*2),".", ","));
 
 }
 
