@@ -106,16 +106,6 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1" colspan="5">
-     <widget class="QLabel" name="equation">
-      <property name="text">
-       <string>0</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="5">
      <widget class="QPushButton" name="pushButton_backspace">
       <property name="sizePolicy">
@@ -548,6 +538,23 @@
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="0" column="2" colspan="4">
+     <widget class="QLabel" name="equation">
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
      </widget>
     </item>
    </layout>
