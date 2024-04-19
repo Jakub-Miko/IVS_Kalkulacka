@@ -67,7 +67,7 @@ set(CPACK_PACKAGE_NAME "IVS_Calculator")
 set(CPACK_PACKAGE_VERSION_MAJOR 0)
 set(CPACK_PACKAGE_VERSION_MAJOR 1)
 set(CPACK_PACKAGE_DESCRIPTION "IVSCalculator from Team EEEEE")
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6core6, libqt6gui6, libqt6core5compat6, libqt6widgets6, qt6-qpa-plugins")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6core6, libqt6gui6, libqt6core5compat6, libqt6widgets6, qt6-qpa-plugins, libqt6multimedia6, libqt6svg6, libqt6svgwidgets6")
 
 file(GLOB MATHENGINE_TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/math_engine.cpp" 
 "${CMAKE_CURRENT_SOURCE_DIR}/math_engine.h"
