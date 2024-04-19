@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "about.h"
+#include "qaudiooutput.h"
+#include "qmediaplayer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,6 +19,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    void PlaySound();
 
 private slots:
     void number_clicked();
@@ -34,6 +38,8 @@ private slots:
     void on_pushButton_mode_released();
 
 private:
+    QMediaPlayer* player;
+    QAudioOutput* output;
     Ui::MainWindow *ui;
     about *about_window;
     bool mode_choice;

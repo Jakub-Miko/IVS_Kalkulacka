@@ -12,10 +12,10 @@ jobs:
         uses: ScribeMD/docker-cache@0.5.0
         id: cache
         with:
-          key: docker-${{ runner.os }}-${{ steps.tests.uses }}
+          key: docker-${{ runner.os }}-${{ steps.tests.run }}
       - name: Execute Tests
         id: tests
-        run: docker run --rm -v ${{ github.workspace }}:/github/workspace jakubmiko/ivskal_ci_tests:v0.6
+        run: docker run --rm -v ${{ github.workspace }}:/github/workspace jakubmiko/ivskal_ci_tests:v0.10
         timeout-minutes: 3
       - name: Output Artifact
         if: success() || failure()

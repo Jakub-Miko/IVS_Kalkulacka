@@ -30,7 +30,7 @@ test_err=$?
 
 kill $pid_timeout
 
-sleep 10s && echo "Screenshot Timed out" 1>&2 && kill -s SIGINT -1 &
+sleep 20s && echo "Screenshot Timed out" 1>&2 && kill -s SIGINT -1 &
 pid_timeout=$!
 
 mkfifo pipe
@@ -38,12 +38,11 @@ mkfifo pipe
 run_error=$?
 window_pid=$!
 /spinlock.sh "Window Opened" < pipe
-rm pipe
 sleep 0.5s
 import -window E-Calculator /github/workspace/artifacts/Window.png
 sleep 0.5s
 kill $window_pid
-
+rm pipe
 kill $pid_timeout
 
 chmod 777 -R /github/workspace/
