@@ -23,6 +23,11 @@ namespace constants
      * Boltzmann's constant
     */
     constexpr double const_k = 1.380649e-23;
+
+    /**
+     * Speed of light (m/s)
+    */
+    constexpr double const_light = 299792458.0;
 }
 
 /**
@@ -84,3 +89,17 @@ long double ln(long double a);
 */
 long double AbsVal(long double a);
 
+/**
+ * @return Sine of argument value
+*/
+long double Sine(long double a);
+
+/**
+ * @return Cosine of argument value
+*/
+long double Cosine(long double a);
+
+/**
+ * @return Tangent of argument value
+*/
+long double Tangent(long double a);
