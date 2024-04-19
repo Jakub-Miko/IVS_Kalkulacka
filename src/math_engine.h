@@ -4,15 +4,22 @@
  * @author Jakub Miko 
 */
 #pragma once
-#include <stack>
+#include <vector>
 
 /// @brief Abstraction of UI math logic
 class MathEngine {
 public:
 
+
     /// @brief Type defining last active mathematical operation
     enum class Operation {
         DEFAULT, RESULT, ADD, SUBTRACT, MULTIPLY, DIVIDE, FACTORIAL, LN, ABSVAL, POWER, ROOT
+    };
+
+    /// @brief The current status of the operation and result of a paranthesis
+    struct Context {
+        long double accumulator; ///< result value of the current context
+        Operation last_op; ///< last operation initiated on the context
     };
 
 public:
@@ -82,14 +89,12 @@ public:
     /// @brief End a paranthesis
     void EndContext();
 
+    /// @brief Get the context stack, needed to display the equation
+    /// @return context stack @ref Context
+    const std::vector<Context>& GetContextStack() const;
+
 private:
-    
-    /// @brief The current status of the operation and result of a paranthesis
-    struct Context {
-        long double accumulator; ///< result value of the current context
-        Operation last_op; ///< last operation initiated on the context
-    };
 
     /// @brief Stack of paranthesis (@ref Context), enabling nested paranthesis
-    std::stack<Context> context_stack; 
+    std::vector<Context> context_stack; 
 };

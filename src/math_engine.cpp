@@ -7,7 +7,7 @@ MathEngine::MathEngine() : context_stack()
     Context context; 
     context.accumulator = 0;
     context.last_op = Operation::DEFAULT;
-    context_stack.push(std::move(context));
+    context_stack.push_back(std::move(context));
 }
 
 void MathEngine::SendNumber(long double number)
@@ -15,8 +15,8 @@ void MathEngine::SendNumber(long double number)
     // based on the last submitted operation, perform a calculation with the accumulator and the input number
     // and then save the result back into the accumulator
     long double result = 0;
-    long double accumulator = context_stack.top().accumulator;
-    switch (context_stack.top().last_op)
+    long double accumulator = context_stack.back().accumulator;
+    switch (context_stack.back().last_op)
     {
     case Operation::ADD:
         result = Add(accumulator, number);
@@ -31,122 +31,124 @@ void MathEngine::SendNumber(long double number)
         result = Div(accumulator, number);
         break;
     case Operation::POWER:
+        if(number < 0) throw std::runtime_error("Exponent cant be negative");
         result = Power(accumulator, number);
         break;
     case Operation::ROOT:
-        result = Root(accumulator, number);
-        break;
-    case Operation::DEFAULT:
-        result = number;
+        result = Root(number, accumulator);
         break;
     case Operation::RESULT:
-        result = accumulator;
+    case Operation::DEFAULT:
+        result = number;
         break;
     default:
         throw std::runtime_error("Unsupported mathematical operation");
         break;
     }
-    context_stack.top().accumulator = result;
+    context_stack.back().accumulator = result;
 }
 
 void MathEngine::SendEquals()
 {
     // Make sure to close all the paranthesis to get the final result
     while(context_stack.size() > 1) {
-        context_stack.top().last_op = Operation::RESULT;
+        context_stack.back().last_op = Operation::RESULT;
         EndContext();
     }
-    context_stack.top().last_op = Operation::RESULT;
+    context_stack.back().last_op = Operation::RESULT;
 }
 
 void MathEngine::SendAdd()
 {
-    context_stack.top().last_op = Operation::ADD;
+    context_stack.back().last_op = Operation::ADD;
 }
 
 void MathEngine::SendSubtract()
 {
-    context_stack.top().last_op = Operation::SUBTRACT;
+    context_stack.back().last_op = Operation::SUBTRACT;
 }
 
 void MathEngine::SendMultiply()
 {
-    context_stack.top().last_op = Operation::MULTIPLY;
+    context_stack.back().last_op = Operation::MULTIPLY;
 }
 
 void MathEngine::SendPower()
 {
-    context_stack.top().last_op = Operation::POWER;
+    context_stack.back().last_op = Operation::POWER;
 }
 
 void MathEngine::SendRoot()
 {
-    context_stack.top().last_op = Operation::ROOT;
+    if(context_stack.back().accumulator == 0) throw std::runtime_error("0th root not allowed");
+    if(context_stack.back().accumulator < 0) throw std::runtime_error("Exponent cant be negative");
+    context_stack.back().last_op = Operation::ROOT;
 }
 
 void MathEngine::SendDivide()
 {
-    context_stack.top().last_op = Operation::DIVIDE;
+    context_stack.back().last_op = Operation::DIVIDE;
 }
 
 void MathEngine::SendFactorial()
 {
+    if(context_stack.back().accumulator < 0) throw std::runtime_error("Factorial of negative numbers not allowed");
     // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
-    context_stack.top().accumulator = Factorial(context_stack.top().accumulator);
+    context_stack.back().accumulator = Factorial(context_stack.back().accumulator);
     // After the calculation is complete, since no other operand is awaited
     // we can consider the value to be a complete result
-    context_stack.top().last_op = Operation::RESULT; 
+    context_stack.back().last_op = Operation::RESULT; 
 }
 
 void MathEngine::Sendln()
 {
     // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
-    context_stack.top().accumulator = ln(context_stack.top().accumulator);
+    context_stack.back().accumulator = ln(context_stack.back().accumulator);
     // After the calculation is complete, since no other operand is awaited
     // we can consider the value to be a complete result
-    context_stack.top().last_op = Operation::RESULT;
+    context_stack.back().last_op = Operation::RESULT;
 }
 
 void MathEngine::SendAbsVal()
 {
     // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
-    context_stack.top().accumulator = AbsVal(context_stack.top().accumulator);
+    context_stack.back().accumulator = AbsVal(context_stack.back().accumulator);
     // After the calculation is complete, since no other operand is awaited
     // we can consider the value to be a complete result
-    context_stack.top().last_op = Operation::RESULT;
+    context_stack.back().last_op = Operation::RESULT;
 }
 
 long double MathEngine::GetAccumulator() const
 {
-    return context_stack.top().accumulator;
+    return context_stack.back().accumulator;
 }
 
 bool MathEngine::IsAccumulatorResult() const
 {
-    return context_stack.top().last_op == Operation::RESULT;
+    return context_stack.back().last_op == Operation::RESULT;
 }
 
 bool MathEngine::IsResultAvailable() const
 {
     // For a complete result, the accumulator result needs to be the only one (all paranthesis need to be closed)
-    return (context_stack.size() == 1) && (context_stack.top().last_op == Operation::RESULT);
+    return (context_stack.size() == 1) && (context_stack.back().last_op == Operation::RESULT);
 }
 
 void MathEngine::ClearAccumulator()
 {
-    context_stack.top().accumulator = 0;
-    context_stack.top().last_op = Operation::DEFAULT;
+    context_stack.back().accumulator = 0;
+    context_stack.back().last_op = Operation::DEFAULT;
 }
 
 void MathEngine::ResetAllContexts()
 {
     while(context_stack.size() > 0) {
-        context_stack.pop();
+        context_stack.pop_back();
     }
     Context context;
     context.accumulator = 0;
     context.last_op = Operation::DEFAULT;
-    context_stack.push(std::move(context));
+    context_stack.push_back(std::move(context));
 }
 
 void MathEngine::StartContext()
@@ -156,7 +158,7 @@ void MathEngine::StartContext()
     Context context;
     context.accumulator = 0;
     context.last_op = Operation::DEFAULT;
-    context_stack.push(std::move(context));
+    context_stack.push_back(std::move(context));
 }
 
 void MathEngine::EndContext()
@@ -166,7 +168,12 @@ void MathEngine::EndContext()
     if(context_stack.size() <= 1) {
         throw std::runtime_error("Can't pop default context");
     }
-    long double accumulator_temp = context_stack.top().accumulator;
-    context_stack.pop();
+    long double accumulator_temp = context_stack.back().accumulator;
+    context_stack.pop_back();
     SendNumber(accumulator_temp);
+}
+
+const std::vector<MathEngine::Context>& MathEngine::GetContextStack() const
+{
+    return context_stack;
 }
