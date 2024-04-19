@@ -12,6 +12,7 @@ SvgButton::SvgButton(QWidget *parent) : QPushButton(parent), target_color(QColor
     m_color_default(QColor(72,72,72)), m_color_hover(QColor(30,30,30)) {
     QSvgRenderer* widget = new QSvgRenderer(this);
     svg_renderer = widget;
+    svg_renderer->setAspectRatioMode(Qt::AspectRatioMode::KeepAspectRatio);
 
     animation.setStartValue(target_color);
     animation.setDuration(300);
@@ -28,7 +29,7 @@ void SvgButton::SetColor(const QVariant& color)
 
 void SvgButton::SetPath(QString path)
 {
-    svg_renderer->load(QString(":/resources/") + this->path() + QString(".svg")); // Loads the svg from the Resource file
+    svg_renderer->load(QString(":/resources/") + this->path()); // Loads the svg from the Resource file
     int margin = std::abs(width() - height()) / 2; ///< margin used for maintaining the aspect ration
     QRect res;
     if(width() >height()) {
@@ -45,6 +46,7 @@ void SvgButton::SetPath(QString path)
     painter.setRenderHint(QPainter::SmoothPixmapTransform,true);
 
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver); // make sure both alpha and color channels are written
+    svg_renderer->setAspectRatioMode(Qt::AspectRatioMode::KeepAspectRatio);
     svg_renderer->render(&painter,QRectF(0 ,0, res.width(), res.height())); // render the svg
     this->image = image;
     painter.end();

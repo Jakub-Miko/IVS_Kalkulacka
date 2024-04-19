@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file alias="1">svgs/1.svg</file>
+        <file alias="2">svgs/2.svg</file>
+        <file alias="3">svgs/3.svg</file>
+        <file alias="4">svgs/4.svg</file>
+        <file alias="5">svgs/5.svg</file>
+        <file alias="6">svgs/6.svg</file>
+        <file alias="7">svgs/7.svg</file>
+        <file alias="8">svgs/8.svg</file>
+        <file alias="9">svgs/9.svg</file>
+        <file alias="g1">svgs/g1.svg</file>
+    </qresource>
+</RCC>

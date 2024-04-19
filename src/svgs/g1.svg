@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="85.708534mm"
+   height="85.708542mm"
+   viewBox="0 0 85.708534 85.708542"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-50.92146,-98.201139)">
+    <g
+       id="g1">
+      <circle
+         style="fill:#dfa3a3;fill-opacity:0;stroke:#ffffff;stroke-width:3.165;stroke-dasharray:none;stroke-opacity:1"
+         id="path1"
+         cx="93.775726"
+         cy="141.0554"
+         r="41.271767" />
+      <path
+         d="m 79.653665,128.0592 4.608873,-8.66416 h 34.034772 l -4.60887,8.66416 z m 3.072583,25.99241 h 31.139442 l -4.49068,8.66416 H 69.254152 l 9.217749,-17.32829 h -6.381517 l 4.490698,-8.66415 h 30.371298 l -4.60888,8.66415 H 87.216946 Z"
+         id="text1"
+         style="font-size:22.5778px;line-height:0.9;font-family:'EA Logo';-inkscape-font-specification:'EA Logo';fill:#ffffff;stroke:#ffffff;stroke-width:9.07821;stroke-opacity:0"
+         aria-label="E" />
+    </g>
+  </g>
+</svg>
