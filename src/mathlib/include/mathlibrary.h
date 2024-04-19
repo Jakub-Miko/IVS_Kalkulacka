@@ -23,6 +23,11 @@ namespace constants
      * Boltzmann's constant
     */
     constexpr double const_k = 1.380649e-23;
+
+    /**
+     * Speed of light (m/s)
+    */
+    constexpr double const_light = 299792458.0;
 }
 
 /**

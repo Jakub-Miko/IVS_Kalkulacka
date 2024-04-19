@@ -85,4 +85,17 @@ long double AbsVal(long double a)
     return std::abs(a);
 }
 
+long double Sine(long double a)
+{
+    return std::sin(a);
+}
 
+long double Cosine(long double a)
+{
+    return std::cos(a);
+}
+
+long double Tangent(long double a)
+{
+    return std::tan(a);
+}
