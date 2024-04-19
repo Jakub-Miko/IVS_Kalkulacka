@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(Ivs_Calculator VERSION 0.1 LANGUAGES CXX)
 
 
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -14,6 +15,10 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 include(GoogleTest)
+
+
+add_subdirectory(mathlib)
+add_subdirectory(profiler)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -61,7 +66,6 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Ivs_Calculator)
 endif()
 
-add_subdirectory(mathlib)
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Team EEEEE")
 set(CPACK_PACKAGE_NAME "IVS_Calculator")
 set(CPACK_PACKAGE_VERSION_MAJOR 0)
