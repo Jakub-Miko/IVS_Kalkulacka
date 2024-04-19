@@ -2,7 +2,7 @@
  * @file mathlib_tdd_tests.cpp
  * @author Nikola Jordanov
  *
- * @brief implementace testu test driven development
+ * @brief implementation of test driven development tests
  */
 
 #include "mathlibrary.h"
