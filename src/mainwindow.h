@@ -27,51 +27,51 @@ public:
 private slots:
     void number_clicked();
 
-    void keyReleaseEvent(QKeyEvent *);
+    void keyPressEvent(QKeyEvent *);
 
-    void on_pushButton_backspace_released();
+    void on_pushButton_backspace_clicked();
 
-    void on_pushButton_clearfull_released();
+    void on_pushButton_clearfull_clicked();
 
-    void on_pushButton_cleardisp_released();
+    void on_pushButton_cleardisp_clicked();
 
     void on_actionAbout_triggered();
 
-    void on_pushButton_mode_released();
+    void on_pushButton_mode_clicked();
 
-    void on_pushButton_plus_released();
+    void on_pushButton_plus_clicked();
 
-    void on_pushButton_minus_released();
+    void on_pushButton_minus_clicked();
 
-    void on_pushButton_mul_released();
+    void on_pushButton_mul_clicked();
 
-    void on_pushButton_div_released();
+    void on_pushButton_div_clicked();
 
-    void on_pushButton_equals_released();
+    void on_pushButton_equals_clicked();
 
-    void on_pushButton_comma_released();
+    void on_pushButton_comma_clicked();
 
-    void on_pushButton_root_released();
+    void on_pushButton_root_clicked();
 
-    void on_pushButton_power_released();
+    void on_pushButton_power_clicked();
 
-    void on_pushButton_abs_released();
+    void on_pushButton_abs_clicked();
 
-    void on_pushButton_pi_released();
+    void on_pushButton_pi_clicked();
 
-    void on_pushButton_c_released();
+    void on_pushButton_c_clicked();
 
-    void on_pushButton_e_released();
+    void on_pushButton_e_clicked();
 
-    void on_pushButton_k_released();
+    void on_pushButton_k_clicked();
 
-    void on_pushButton_h_released();
+    void on_pushButton_h_clicked();
 
-    void on_pushButton_factorial_released();
+    void on_pushButton_factorial_clicked();
 
-    void on_pushButton_log_released();
+    void on_pushButton_log_clicked();
 
-    void on_pushButton_chngval_released();
+    void on_pushButton_chngval_clicked();
 
 private:
     QMediaPlayer* player;
