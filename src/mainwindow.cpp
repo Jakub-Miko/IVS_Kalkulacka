@@ -333,6 +333,7 @@ void MainWindow::on_pushButton_power_clicked()
 void MainWindow::on_pushButton_abs_clicked()
 {
     try {
+        SendNumberToEngine(ui, math);
         ShowOperation(ui, "");
         math.SendAbsVal();
         ShowResult(ui, math);
@@ -346,6 +347,7 @@ void MainWindow::on_pushButton_abs_clicked()
 void MainWindow::on_pushButton_factorial_clicked()
 {
     try {
+        SendNumberToEngine(ui, math);
         ShowOperation(ui, "");
         math.SendFactorial();
         ShowResult(ui, math);
@@ -359,6 +361,7 @@ void MainWindow::on_pushButton_factorial_clicked()
 void MainWindow::on_pushButton_log_clicked()
 {
     try {
+        SendNumberToEngine(ui, math);
         ShowOperation(ui, "");
         math.Sendln();
         ShowResult(ui, math);
