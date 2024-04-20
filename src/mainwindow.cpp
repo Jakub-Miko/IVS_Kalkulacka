@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QMediaDevices>
 #include <QAudioDevice>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,16 +20,16 @@ MainWindow::MainWindow(QWidget *parent)
 	    player = new QMediaPlayer(this);
     }
     
-    connect(ui->pushButton_number_0, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_1, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_2, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_3, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_4, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_5, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_6, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_7, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_8, SIGNAL(released()), this, SLOT(number_clicked()));
-    connect(ui->pushButton_number_9, SIGNAL(released()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_0, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_1, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_2, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_3, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_4, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_5, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_6, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_7, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_8, SIGNAL(clicked()), this, SLOT(number_clicked()));
+    connect(ui->pushButton_number_9, SIGNAL(clicked()), this, SLOT(number_clicked()));
 
 }
 
@@ -71,8 +72,10 @@ QString ReplaceString(QString Text, QString Find, QString Replace) {
 }
 
 void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
-    long double ld = std::strtold(ReplaceString(ui->display->text(), ",", ".").toLatin1().data(),nullptr);
-    math.SendNumber(ld);
+    if (!ui->display->text().isEmpty()) {
+        long double ld = std::strtold(ReplaceString(ui->display->text(), ",", ".").toLatin1().data(),nullptr);
+        math.SendNumber(ld);
+    }
 }
 
 void ShowResult(Ui::MainWindow* ui, MathEngine& math) {
@@ -81,7 +84,11 @@ void ShowResult(Ui::MainWindow* ui, MathEngine& math) {
     ui->display->setText("");
 }
 
-void MainWindow::on_pushButton_backspace_released()
+void ShowOperation(Ui::MainWindow* ui, QString operation) {
+    ui->operation->setText(operation);
+}
+
+void MainWindow::on_pushButton_backspace_clicked()
 {
     QString LabelNumber;
     LabelNumber = (ui->display->text());
@@ -89,7 +96,7 @@ void MainWindow::on_pushButton_backspace_released()
     ui->display->setText(LabelNumber);
 }
 
-void MainWindow::on_pushButton_clearfull_released()
+void MainWindow::on_pushButton_clearfull_clicked()
 {
     ui->display->setText("");
     ui->equation->setText("0");
@@ -97,12 +104,12 @@ void MainWindow::on_pushButton_clearfull_released()
 }
 
 
-void MainWindow::on_pushButton_cleardisp_released()
+void MainWindow::on_pushButton_cleardisp_clicked()
 {
     ui->display->setText("");
 }
 
-void MainWindow::keyReleaseEvent(QKeyEvent * event)
+void MainWindow::keyPressEvent(QKeyEvent * event)
 {   //SWITCH CASE FOR NUMBERS
     switch(event->key()) {
     case Qt::Key_0:
@@ -137,7 +144,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent * event)
         break;
     case Qt::Key_Comma:
     case Qt::Key_Period:
-        on_pushButton_comma_released();
+        on_pushButton_comma_clicked();
         break;
     case Qt::Key_Backspace:
     {
@@ -157,34 +164,39 @@ void MainWindow::keyReleaseEvent(QKeyEvent * event)
         switch(event->key()) {
         case Qt::Key_Plus:
             math.SendAdd();
+            ShowOperation(ui, "+");
             break;
         case Qt::Key_Minus:
             math.SendSubtract();
+            ShowOperation(ui, "-");
             break;
         case Qt::Key_Asterisk:
             math.SendMultiply();
+            ShowOperation(ui, "*");
             break;
         case Qt::Key_Slash:
             math.SendDivide();
+            ShowOperation(ui, "/");
             break;
         }
     } else
     switch(event->key()) {
     case Qt::Key_Plus:
-        on_pushButton_plus_released();
+        on_pushButton_plus_clicked();
         break;
     case Qt::Key_Minus:
-        on_pushButton_minus_released();
+        on_pushButton_minus_clicked();
         break;
     case Qt::Key_Asterisk:
         qInfo("More");
-        on_pushButton_mul_released();
+        on_pushButton_mul_clicked();
         break;
     case Qt::Key_Slash:
-        on_pushButton_div_released();
+        on_pushButton_div_clicked();
         break;
     case Qt::Key_Enter:
-        on_pushButton_equals_released();
+    case Qt::Key_Return:
+        on_pushButton_equals_clicked();
         break;
     }
 }
@@ -196,7 +208,7 @@ void MainWindow::on_actionAbout_triggered()
     about_window->show();
 }
 
-void MainWindow::on_pushButton_mode_released()
+void MainWindow::on_pushButton_mode_clicked()
 {
     ui->MOD_container->setCurrentIndex(mode_choice);
     if(mode_choice) mode_choice = false;
@@ -204,68 +216,78 @@ void MainWindow::on_pushButton_mode_released()
 }
 
 
-void MainWindow::on_pushButton_plus_released()
+void MainWindow::on_pushButton_plus_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
+        ShowOperation(ui, "+");
         math.SendAdd();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_minus_released()
+void MainWindow::on_pushButton_minus_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
+        ShowOperation(ui, "-");
         math.SendSubtract();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_mul_released()
+void MainWindow::on_pushButton_mul_clicked()
 {
     try {
         math.SendNumber(1);
         SendNumberToEngine(ui, math);
+        ShowOperation(ui, "*");
         math.SendMultiply();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_div_released()
+void MainWindow::on_pushButton_div_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
+        ShowOperation(ui, "/");
         math.SendDivide();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_equals_released()
+void MainWindow::on_pushButton_equals_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
+        ShowOperation(ui, "");
         math.SendEquals();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+            setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_comma_released()
+void MainWindow::on_pushButton_comma_clicked()
 {
     QString displayed = ui->display->text();
     if (displayed == ""){
@@ -279,104 +301,116 @@ void MainWindow::on_pushButton_comma_released()
 
 
 
-void MainWindow::on_pushButton_root_released()
+void MainWindow::on_pushButton_root_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
+        ShowOperation(ui, "√");
         math.SendRoot();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_power_released()
+void MainWindow::on_pushButton_power_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
+        ShowOperation(ui, "^");
         math.SendPower();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 
 }
 
 // UNARY OPERATIONS
-void MainWindow::on_pushButton_abs_released()
+void MainWindow::on_pushButton_abs_clicked()
 {
     try {
+        ShowOperation(ui, "");
         math.SendAbsVal();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_factorial_released()
+void MainWindow::on_pushButton_factorial_clicked()
 {
     try {
+        ShowOperation(ui, "");
         math.SendFactorial();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
-void MainWindow::on_pushButton_log_released()
+void MainWindow::on_pushButton_log_clicked()
 {
     try {
+        ShowOperation(ui, "");
         math.Sendln();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
-        qDebug() << err.what();
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
     }
 }
 
 
 
-void MainWindow::on_pushButton_pi_released()
+void MainWindow::on_pushButton_pi_clicked()
 {
     ui->display->setText(ReplaceString(QString::number((double)constants::const_pi, 'F', PRECISION_OF_NUMBER*2), ".", ","));
 }
 
 
-void MainWindow::on_pushButton_c_released()
+void MainWindow::on_pushButton_c_clicked()
 {
     //ui->display->setText(QString::number((double)constants::const_c, 'F', PRECISION_OF_NUMBER));
 }
 
 
-void MainWindow::on_pushButton_e_released()
+void MainWindow::on_pushButton_e_clicked()
 {
     ui->display->setText(ReplaceString(QString::number((double)constants::const_e, 'F', PRECISION_OF_NUMBER*2),".", ","));
 }
 
 
-void MainWindow::on_pushButton_k_released()
+void MainWindow::on_pushButton_k_clicked()
 {
     ui->display->setText(ReplaceString(QString::number((double)constants::const_k, 'F', PRECISION_OF_NUMBER*2),".", ","));
 }
 
 
-void MainWindow::on_pushButton_h_released()
+void MainWindow::on_pushButton_h_clicked()
 {
     ui->display->setText(ReplaceString(QString::number((double)constants::const_h, 'F', PRECISION_OF_NUMBER*2),".", ","));
 
 }
 
 
-void MainWindow::on_pushButton_chngval_released()
+void MainWindow::on_pushButton_chngval_clicked()
 {
     QString Displayed = ui->display->text();
-    if (Displayed[0] == '-') {
-        Displayed.remove(0,1);
-    } else
-        Displayed = "-" + Displayed;
-    ui->display->setText(Displayed);
+    if (!Displayed.isEmpty()) {
+        if (Displayed[0] == '-') {
+            Displayed.remove(0,1);
+        } else
+            Displayed = "-" + Displayed;
+        ui->display->setText(Displayed);
+    }
 
 }
 
