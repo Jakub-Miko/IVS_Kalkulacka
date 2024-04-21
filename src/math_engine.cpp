@@ -118,6 +118,33 @@ void MathEngine::SendAbsVal()
     context_stack.back().last_op = Operation::RESULT;
 }
 
+void MathEngine::SendSine()
+{
+    // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
+    context_stack.back().accumulator = Sine(context_stack.back().accumulator);
+    // After the calculation is complete, since no other operand is awaited
+    // we can consider the value to be a complete result
+    context_stack.back().last_op = Operation::RESULT;
+}
+
+void MathEngine::SendCosine()
+{
+    // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
+    context_stack.back().accumulator = Cosine(context_stack.back().accumulator);
+    // After the calculation is complete, since no other operand is awaited
+    // we can consider the value to be a complete result
+    context_stack.back().last_op = Operation::RESULT;
+}
+
+void MathEngine::SendTangent()
+{
+    // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
+    context_stack.back().accumulator = Tangent(context_stack.back().accumulator);
+    // After the calculation is complete, since no other operand is awaited
+    // we can consider the value to be a complete result
+    context_stack.back().last_op = Operation::RESULT;
+}
+
 long double MathEngine::GetAccumulator() const
 {
     return context_stack.back().accumulator;

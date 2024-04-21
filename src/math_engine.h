@@ -65,6 +65,15 @@ public:
     /// @brief User clicked the ABS button.
     void SendAbsVal();
 
+    /// @brief User clicked the SIN button.
+    void SendSine();
+
+    /// @brief User clicked the COS button.
+    void SendCosine();
+
+    /// @brief User clicked the TAN button.
+    void SendTangent();
+
     /// @brief Get the current value of the accumulator (result from the current paranthesis)
     /// @return accumulator value
     long double GetAccumulator() const;

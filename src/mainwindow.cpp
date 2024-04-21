@@ -82,6 +82,7 @@ void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
 
 void ShowResult(Ui::MainWindow* ui, MathEngine& math) {
     long double ld = math.GetAccumulator();
+    ld = std::round(Power(10, PRECISION_OF_NUMBER) * ld) / Power(10, PRECISION_OF_NUMBER);
     std::stringstream ss;
     ss << std::setprecision(PRECISION_OF_NUMBER) << ld;
     std::string text = ss.str();
@@ -166,27 +167,6 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
     }
 
     // SWITCH CASES FOR OPERATIONS
-    if (ui->display->text() == "") {
-        qInfo("Pekne menis znamienko :3");
-        switch(event->key()) {
-        case Qt::Key_Plus:
-            math.SendAdd();
-            ShowOperation(ui, "+");
-            break;
-        case Qt::Key_Minus:
-            math.SendSubtract();
-            ShowOperation(ui, "-");
-            break;
-        case Qt::Key_Asterisk:
-            math.SendMultiply();
-            ShowOperation(ui, "*");
-            break;
-        case Qt::Key_Slash:
-            math.SendDivide();
-            ShowOperation(ui, "/");
-            break;
-        }
-    } else
     switch(event->key()) {
     case Qt::Key_Plus:
         on_pushButton_plus_clicked();
@@ -254,7 +234,9 @@ void MainWindow::on_pushButton_minus_clicked()
 void MainWindow::on_pushButton_mul_clicked()
 {
     try {
-        math.SendNumber(1);
+        if(math.GetContextStack().back().last_op == MathEngine::Operation::DEFAULT) {
+            math.SendNumber(1);
+        }
         SendNumberToEngine(ui, math);
         ShowOperation(ui, "*");
         math.SendMultiply();
@@ -269,6 +251,9 @@ void MainWindow::on_pushButton_mul_clicked()
 void MainWindow::on_pushButton_div_clicked()
 {
     try {
+        if(math.GetContextStack().back().last_op == MathEngine::Operation::DEFAULT) {
+            math.SendNumber(1);
+        }
         SendNumberToEngine(ui, math);
         ShowOperation(ui, "/");
         math.SendDivide();
@@ -388,7 +373,7 @@ void MainWindow::on_pushButton_pi_clicked()
 
 void MainWindow::on_pushButton_c_clicked()
 {
-    //ui->display->setText(QString::number((double)constants::const_c, 'F', PRECISION_OF_NUMBER*1.25));
+    ui->display->setText(QString::number((double)constants::const_light, 'F', 0));
 }
 
 
@@ -422,5 +407,46 @@ void MainWindow::on_pushButton_chngval_clicked()
         ui->display->setText(Displayed);
     }
 
+}
+
+void MainWindow::on_pushButton_sine_clicked()
+{
+    try {
+        SendNumberToEngine(ui, math);
+        ShowOperation(ui, "");
+        math.SendSine();
+        ShowResult(ui, math);
+    } catch(const std::runtime_error& err) {
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
+    }
+}
+
+
+void MainWindow::on_pushButton_cosine_clicked()
+{
+    try {
+        SendNumberToEngine(ui, math);
+        ShowOperation(ui, "");
+        math.SendCosine();
+        ShowResult(ui, math);
+    } catch(const std::runtime_error& err) {
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
+    }
+}
+
+
+void MainWindow::on_pushButton_tangent_clicked()
+{
+    try {
+        SendNumberToEngine(ui, math);
+        ShowOperation(ui, "");
+        math.SendTangent();
+        ShowResult(ui, math);
+    } catch(const std::runtime_error& err) {
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
+    }
 }
 
