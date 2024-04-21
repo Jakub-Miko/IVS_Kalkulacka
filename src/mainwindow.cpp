@@ -42,7 +42,7 @@ MainWindow::~MainWindow()
 void MainWindow::PlaySound()
 {
     if(!output) return;
-    player->setSource(QUrl("qrc:/It's in the game.mp3"));
+    player->setSource(QUrl("qrc:/resources/easter_egg.mp3"));
     player->setAudioOutput(output);
     output->setVolume(50);
     player->play();
@@ -147,6 +147,12 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
         break;
     case Qt::Key_9:
         AddNumber(ui, "9");
+        break;
+    case Qt::Key_ParenLeft:
+        on_pushButton_open_clicked();
+        break;
+    case Qt::Key_ParenRight:
+        on_pushButton_close_clicked();
         break;
     case Qt::Key_Comma:
     case Qt::Key_Period:
@@ -370,6 +376,9 @@ void MainWindow::on_pushButton_c_clicked()
 
 void MainWindow::on_pushButton_e_clicked()
 {
+    if(ui->actionSounds->isChecked()) {
+        PlaySound();
+    }
     ui->display->setText(ReplaceString(QString::number((double)constants::const_e, 'F', PRECISION_OF_NUMBER*2),".", ","));
 }
 
