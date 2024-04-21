@@ -7,14 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>457</width>
-    <height>610</height>
+    <height>709</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(39, 39, 39)</string>
+   <string notr="true">background-color: rgb(39, 39, 39);
+color: rgb(255,255,255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -738,7 +739,7 @@ QPushButton:hover {
          <number>0</number>
         </property>
         <item row="3" column="0">
-         <widget class="QPushButton" name="pushButton_4">
+         <widget class="QPushButton" name="pushButton_cosine">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -767,7 +768,7 @@ QPushButton:hover {
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="pushButton_sine">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -780,7 +781,7 @@ QPushButton:hover {
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QPushButton" name="pushButton_5">
+         <widget class="QPushButton" name="pushButton_tangent">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>

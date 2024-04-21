@@ -73,6 +73,13 @@ private slots:
 
     void on_pushButton_chngval_clicked();
 
+
+    void on_pushButton_sine_clicked();
+
+    void on_pushButton_cosine_clicked();
+
+    void on_pushButton_tangent_clicked();
+
 private:
     QMediaPlayer* player;
     QAudioOutput* output;
