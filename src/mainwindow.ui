@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>457</width>
-    <height>709</height>
+    <height>711</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -916,6 +916,16 @@ border:none</string>
      <width>457</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QMenu::item:selected { 
+    background-color: rgb(100, 100, 100);
+}
+
+QMenuBar::item:selected { 
+    background-color: rgb(100, 100, 100);
+}</string>
    </property>
    <widget class="QMenu" name="menuMenu">
     <property name="title">
