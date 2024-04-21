@@ -6,7 +6,6 @@
 #include "qaudiooutput.h"
 #include "qmediaplayer.h"
 #include "math_engine.h"
-#include "mathlibrary.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

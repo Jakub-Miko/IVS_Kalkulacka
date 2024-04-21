@@ -16,6 +16,15 @@ public:
         DEFAULT, RESULT, ADD, SUBTRACT, MULTIPLY, DIVIDE, FACTORIAL, LN, ABSVAL, POWER, ROOT
     };
 
+    enum class Status {
+        OK, ROUNDING
+    };
+
+    struct ReturnCode {
+        Status status = Status::OK;
+        const char* msg = nullptr;
+    };
+
     /// @brief The current status of the operation and result of a paranthesis
     struct Context {
         long double accumulator; ///< result value of the current context
@@ -33,10 +42,11 @@ public:
 
     /// @brief Submit number entered by the user
     /// @param number the number submitted by the user
-    void SendNumber(long double number);
+    /// @return Status indicating whether rounding happened withing the last operation
+    ReturnCode SendNumber(long double number);
 
     /// @brief After user clicked the equals sign, calculate the result of the whole expression
-    void SendEquals();
+    ReturnCode SendEquals();
 
     /// @brief User clicked the add button.
     void SendAdd();
@@ -48,16 +58,20 @@ public:
     void SendMultiply();
 
     /// @brief User clicked the Power button
+    /// Be Aware the exponent can only be an argument so rounding may occur (can be checked by the return value of send number)
     void SendPower();
 
     /// @brief User clicked the Root button
+    /// Be Aware the exponent can only be an argument so rounding may occur (can be checked by the return value of send number)
     void SendRoot();
 
     /// @brief User clicked the divide button.
     void SendDivide();
 
     /// @brief User clicked the factorial button.
-    void SendFactorial();
+    /// Be Aware Factorial only takes integer arguments so rounding may occur
+    /// @return Status indicating whether rounding happened withing this operation
+    ReturnCode SendFactorial();
 
     /// @brief User clicked the ln button.
     void Sendln();
@@ -96,7 +110,8 @@ public:
     void StartContext();
 
     /// @brief End a paranthesis
-    void EndContext();
+    /// @return
+    ReturnCode EndContext();
 
     /// @brief Get the context stack, needed to display the equation
     /// @return context stack @ref Context
