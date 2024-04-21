@@ -5,9 +5,15 @@
 */
 #pragma once
 #include <vector>
+#include <string>
+
+#define PRECISION_OF_NUMBER 12
 
 /// @brief Abstraction of UI math logic
 class MathEngine {
+private:
+    static const char* op_symbols[];
+
 public:
 
 
@@ -116,6 +122,9 @@ public:
     /// @brief Get the context stack, needed to display the equation
     /// @return context stack @ref Context
     const std::vector<Context>& GetContextStack() const;
+
+    /// @brief Gets the result display containg all pending(unclosed) contexts(paranthesis)
+    std::string GetDisplay() const;
 
 private:
 

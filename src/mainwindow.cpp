@@ -1,5 +1,3 @@
-#define PRECISION_OF_NUMBER 12
-
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QKeyEvent>
@@ -7,8 +5,6 @@
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QMessageBox>
-#include <sstream>
-#include <iomanip>
 #include "mathlibrary.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -85,18 +81,17 @@ void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
 }
 
 void ShowResult(Ui::MainWindow* ui, MathEngine& math) {
-    long double ld = math.GetAccumulator();
-    ld = std::round(Power(10, PRECISION_OF_NUMBER) * ld) / Power(10, PRECISION_OF_NUMBER);
-    std::stringstream ss;
-    ss << std::setprecision(PRECISION_OF_NUMBER) << ld;
-    std::string text = ss.str();
-    //ui->equation->setText(ReplaceString(QString::number((double)ld,'F', PRECISION_OF_NUMBER), ".", ","));
-    ui->equation->setText(ReplaceString(QString::fromStdString(text), ",", ","));
+    // long double ld = math.GetAccumulator();
+    // ld = std::round(Power(10, PRECISION_OF_NUMBER) * ld) / Power(10, PRECISION_OF_NUMBER);
+    // std::stringstream ss;
+    // ss << std::setprecision(PRECISION_OF_NUMBER) << ld;
+    // std::string text = ss.str();
+    // //ui->equation->setText(ReplaceString(QString::number((double)ld,'F', PRECISION_OF_NUMBER), ".", ","));
+    // ui->equation->setText(ReplaceString(QString::fromStdString(text), ",", ","));
     ui->display->setText("");
-}
 
-void ShowOperation(Ui::MainWindow* ui, QString operation) {
-    ui->operation->setText(operation);
+    ui->equation->setText(math.GetDisplay().c_str());
+
 }
 
 void MainWindow::on_pushButton_backspace_clicked()
@@ -112,7 +107,6 @@ void MainWindow::on_pushButton_clearfull_clicked()
     ui->display->setText("");
     ui->equation->setText("0");
     math.ResetAllContexts();
-    ShowOperation(ui, "");
 }
 
 
@@ -211,7 +205,6 @@ void MainWindow::on_pushButton_plus_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "+");
         math.SendAdd();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -225,7 +218,6 @@ void MainWindow::on_pushButton_minus_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "-");
         math.SendSubtract();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -242,7 +234,6 @@ void MainWindow::on_pushButton_mul_clicked()
             math.SendNumber(1);
         }
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "*");
         math.SendMultiply();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -259,7 +250,6 @@ void MainWindow::on_pushButton_div_clicked()
             math.SendNumber(1);
         }
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "/");
         math.SendDivide();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -273,7 +263,6 @@ void MainWindow::on_pushButton_equals_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "");
         math.SendEquals();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -301,7 +290,6 @@ void MainWindow::on_pushButton_root_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "√");
         math.SendRoot();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -315,7 +303,6 @@ void MainWindow::on_pushButton_power_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "^");
         math.SendPower();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -330,7 +317,6 @@ void MainWindow::on_pushButton_abs_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "");
         math.SendAbsVal();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -344,7 +330,6 @@ void MainWindow::on_pushButton_factorial_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "");
         const char* msg = nullptr;
         if((msg = math.SendFactorial().msg)) {
             QMessageBox::information(nullptr, "Warning", msg);
@@ -361,7 +346,6 @@ void MainWindow::on_pushButton_log_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "");
         math.Sendln();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -390,19 +374,6 @@ void MainWindow::on_pushButton_e_clicked()
 }
 
 
-void MainWindow::on_pushButton_k_clicked()
-{
-    ui->display->setText(ReplaceString(QString::number((double)constants::const_k, 'F', PRECISION_OF_NUMBER*1.5),".", ","));
-}
-
-
-void MainWindow::on_pushButton_h_clicked()
-{
-    ui->display->setText(ReplaceString(QString::number((double)constants::const_h, 'F', PRECISION_OF_NUMBER*1.5),".", ","));
-
-}
-
-
 void MainWindow::on_pushButton_chngval_clicked()
 {
     QString Displayed = ui->display->text();
@@ -420,7 +391,6 @@ void MainWindow::on_pushButton_sine_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "");
         math.SendSine();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -434,7 +404,6 @@ void MainWindow::on_pushButton_cosine_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "");
         math.SendCosine();
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
@@ -448,8 +417,37 @@ void MainWindow::on_pushButton_tangent_clicked()
 {
     try {
         SendNumberToEngine(ui, math);
-        ShowOperation(ui, "");
         math.SendTangent();
+        ShowResult(ui, math);
+    } catch(const std::runtime_error& err) {
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
+    }
+}
+
+
+void MainWindow::on_pushButton_open_clicked()
+{
+    try {
+        SendNumberToEngine(ui, math);
+        math.StartContext();
+        ShowResult(ui, math);
+    } catch(const std::runtime_error& err) {
+        QMessageBox::information(this, "Warning", err.what());
+        setWindowModality(Qt::ApplicationModal);
+    }
+
+}
+
+
+void MainWindow::on_pushButton_close_clicked()
+{
+    try {
+        SendNumberToEngine(ui, math);
+        const char* msg = nullptr;
+        if((msg = math.EndContext().msg)) {
+            QMessageBox::information(nullptr, "Warning", msg);
+        }
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         QMessageBox::information(this, "Warning", err.what());

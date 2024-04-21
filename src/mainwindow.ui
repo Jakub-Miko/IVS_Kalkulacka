@@ -663,7 +663,7 @@ QPushButton:hover {
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QPushButton" name="pushButton_k">
+         <widget class="QPushButton" name="pushButton_open">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -674,7 +674,7 @@ QPushButton:hover {
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>k</string>
+           <string>(</string>
           </property>
           <property name="path" stdset="0">
            <string>k</string>
@@ -701,7 +701,7 @@ QPushButton:hover {
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QPushButton" name="pushButton_h">
+         <widget class="QPushButton" name="pushButton_close">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -712,7 +712,7 @@ QPushButton:hover {
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>h</string>
+           <string>)</string>
           </property>
           <property name="path" stdset="0">
            <string>h</string>
@@ -845,46 +845,6 @@ QPushButton:hover {
       <property name="spacing">
        <number>0</number>
       </property>
-      <item row="0" column="1">
-       <widget class="QLabel" name="operation">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background: none;
-color: rgb(255, 255, 255);
-font: 17pt &quot;Impact&quot;;
-border:none</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="scaledContents">
-         <bool>false</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="equation">
         <property name="sizePolicy">

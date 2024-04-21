@@ -62,10 +62,6 @@ private slots:
 
     void on_pushButton_e_clicked();
 
-    void on_pushButton_k_clicked();
-
-    void on_pushButton_h_clicked();
-
     void on_pushButton_factorial_clicked();
 
     void on_pushButton_log_clicked();
@@ -78,6 +74,12 @@ private slots:
     void on_pushButton_cosine_clicked();
 
     void on_pushButton_tangent_clicked();
+
+    void on_pushButton_open_clicked();
+
+    void on_pushButton_close_clicked();
+
+
 
 private:
     QMediaPlayer* player;
