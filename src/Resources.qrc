@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/resources">
-	<file alias="0">svgs/0.svg</file>
+        <file alias="0">svgs/0.svg</file>
         <file alias="1">svgs/1.svg</file>
         <file alias="2">svgs/2.svg</file>
         <file alias="3">svgs/3.svg</file>
@@ -11,5 +11,6 @@
         <file alias="8">svgs/8.svg</file>
         <file alias="9">svgs/9.svg</file>
         <file alias="g1">svgs/g1.svg</file>
+        <file>easter_egg.mp3</file>
     </qresource>
 </RCC>
