@@ -1,8 +1,13 @@
 #include "math_engine.h"
 #include <mathlibrary.h>
 #include <stdexcept>
+#include <cmath>
+#include <sstream>
+#include <iomanip>>
 
 #define ROUNDING_EPSILON 1.0e-15
+
+const char* MathEngine::op_symbols[] = {"", "", "+", "-", "*", "/", "!", "ln", "abs", "^", "√"};
 
 /// @brief Checks if conversion from double to int doesnt cause information loss (ignoring floating point error)
 /// @return false if rounding occur; true if conversion was withing accuracy margin defined by ROUNDING_EPSILON
@@ -214,7 +219,9 @@ void MathEngine::ResetAllContexts()
 
 void MathEngine::StartContext()
 {
-    // By moving the accumulator and last_op up the stack, we start a fresh calculations, 
+    Operation last = context_stack.back().last_op;
+    if(last == Operation::DEFAULT || last == Operation::RESULT) return;
+    // By moving the accumulator and last_op up the stack, we start a fresh calculations,
     // while retaining information about the current one.
     Context context;
     context.accumulator = 0;
@@ -231,10 +238,34 @@ MathEngine::ReturnCode MathEngine::EndContext()
     }
     long double accumulator_temp = context_stack.back().accumulator;
     context_stack.pop_back();
-    return SendNumber(accumulator_temp);
+    ReturnCode code = SendNumber(accumulator_temp);
+    context_stack.back().last_op = Operation::RESULT;
+    return code;
 }
 
 const std::vector<MathEngine::Context>& MathEngine::GetContextStack() const
 {
     return context_stack;
+}
+
+std::string ConvertDigit(long double digit) {
+    digit = std::round(Power(10, PRECISION_OF_NUMBER) * digit) / Power(10, PRECISION_OF_NUMBER);
+    std::stringstream ss;
+    ss << std::setprecision(PRECISION_OF_NUMBER) << digit;
+    return ss.str();
+}
+
+std::string MathEngine::GetDisplay() const
+{
+    std::string result = "";
+    for(int i = 0; i < context_stack.size(); i++) {
+        auto& context = context_stack[i];
+        if(i == context_stack.size()-1) {
+            result.append(ConvertDigit(context.accumulator) + op_symbols[(int)context.last_op] + " ");
+        } else {
+            result.append(ConvertDigit(context.accumulator) + op_symbols[(int)context.last_op] + " (");
+        }
+    }
+
+    return result;
 }
