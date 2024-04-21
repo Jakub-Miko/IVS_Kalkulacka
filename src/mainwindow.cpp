@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <sstream>
 #include <iomanip>
+#include "mathlibrary.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -76,7 +77,10 @@ QString ReplaceString(QString Text, QString Find, QString Replace) {
 void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
     if (!ui->display->text().isEmpty()) {
         long double ld = std::strtold(ReplaceString(ui->display->text(), ",", ".").toLatin1().data(),nullptr);
-        math.SendNumber(ld);
+        const char* msg = nullptr;
+        if((msg = math.SendNumber(ld).msg)) {
+            QMessageBox::information(nullptr, "Warning", msg);
+        }
     }
 }
 
@@ -341,7 +345,10 @@ void MainWindow::on_pushButton_factorial_clicked()
     try {
         SendNumberToEngine(ui, math);
         ShowOperation(ui, "");
-        math.SendFactorial();
+        const char* msg = nullptr;
+        if((msg = math.SendFactorial().msg)) {
+            QMessageBox::information(nullptr, "Warning", msg);
+        }
         ShowResult(ui, math);
     } catch(const std::runtime_error& err) {
         QMessageBox::information(this, "Warning", err.what());
@@ -379,7 +386,7 @@ void MainWindow::on_pushButton_c_clicked()
 
 void MainWindow::on_pushButton_e_clicked()
 {
-    ui->display->setText(ReplaceString(QString::number((double)constants::const_e, 'F', PRECISION_OF_NUMBER*1.25),".", ","));
+    ui->display->setText(ReplaceString(QString::number((double)constants::const_e, 'F', PRECISION_OF_NUMBER*2),".", ","));
 }
 
 

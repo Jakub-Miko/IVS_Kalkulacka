@@ -2,6 +2,19 @@
 #include <mathlibrary.h>
 #include <stdexcept>
 
+#define ROUNDING_EPSILON 1.0e-15
+
+/// @brief Checks if conversion from double to int doesnt cause information loss (ignoring floating point error)
+/// @return false if rounding occur; true if conversion was withing accuracy margin defined by ROUNDING_EPSILON
+bool CheckConversion(long double input) {
+    std::uint64_t converted = input;
+    long double input_reverted = converted;
+    if(AbsVal(input - input_reverted) > ROUNDING_EPSILON) {
+        return false;
+    }
+    return true;
+}
+
 MathEngine::MathEngine() : context_stack()
 {
     Context context; 
@@ -10,12 +23,13 @@ MathEngine::MathEngine() : context_stack()
     context_stack.push_back(std::move(context));
 }
 
-void MathEngine::SendNumber(long double number)
+MathEngine::ReturnCode MathEngine::SendNumber(long double number)
 {
     // based on the last submitted operation, perform a calculation with the accumulator and the input number
     // and then save the result back into the accumulator
     long double result = 0;
     long double accumulator = context_stack.back().accumulator;
+    MathEngine::ReturnCode status;
     switch (context_stack.back().last_op)
     {
     case Operation::ADD:
@@ -32,9 +46,17 @@ void MathEngine::SendNumber(long double number)
         break;
     case Operation::POWER:
         if(number < 0) throw std::runtime_error("Exponent cant be negative");
+        if(!CheckConversion(number)) {
+            status.status = Status::ROUNDING;
+            status.msg = "Rounding occured in the Power operation, because non integer exponent was provided";
+        }
         result = Power(accumulator, number);
         break;
     case Operation::ROOT:
+        if(!CheckConversion(accumulator)) {
+            status.status = Status::ROUNDING;
+            status.msg = "Rounding occured in the Root operation, because non integer exponent was provided";
+        }
         result = Root(number, accumulator);
         break;
     case Operation::RESULT:
@@ -46,16 +68,22 @@ void MathEngine::SendNumber(long double number)
         break;
     }
     context_stack.back().accumulator = result;
+    return status;
 }
 
-void MathEngine::SendEquals()
+MathEngine::ReturnCode MathEngine::SendEquals()
 {
     // Make sure to close all the paranthesis to get the final result
+    ReturnCode final_code;
     while(context_stack.size() > 1) {
         context_stack.back().last_op = Operation::RESULT;
-        EndContext();
+        if(EndContext().status != Status::OK) {
+            final_code.status = Status::ROUNDING;
+            final_code.msg = "Rounding occured while calculating the expression, please check for operations which only support integer input";
+        }
     }
     context_stack.back().last_op = Operation::RESULT;
+    return final_code;
 }
 
 void MathEngine::SendAdd()
@@ -90,14 +118,20 @@ void MathEngine::SendDivide()
     context_stack.back().last_op = Operation::DIVIDE;
 }
 
-void MathEngine::SendFactorial()
+MathEngine::ReturnCode MathEngine::SendFactorial()
 {
     if(context_stack.back().accumulator < 0) throw std::runtime_error("Factorial of negative numbers not allowed");
     // Unary operations only need the accumulator, so their calculation doesnt need to be deffered
+    ReturnCode code;
+    if(!CheckConversion(context_stack.back().accumulator)) {
+        code.status = Status::ROUNDING;
+        code.msg = "Rounding occured in the Factorial operation, because non integer value was provided";
+    }
     context_stack.back().accumulator = Factorial(context_stack.back().accumulator);
     // After the calculation is complete, since no other operand is awaited
     // we can consider the value to be a complete result
-    context_stack.back().last_op = Operation::RESULT; 
+    context_stack.back().last_op = Operation::RESULT;
+    return code;
 }
 
 void MathEngine::Sendln()
@@ -188,7 +222,7 @@ void MathEngine::StartContext()
     context_stack.push_back(std::move(context));
 }
 
-void MathEngine::EndContext()
+MathEngine::ReturnCode MathEngine::EndContext()
 {
     // After the paranthesis ends, we take the result of the paranthesis, and restore the original operation
     // before the paranthesis, supplying the paranthesis result as an input
@@ -197,7 +231,7 @@ void MathEngine::EndContext()
     }
     long double accumulator_temp = context_stack.back().accumulator;
     context_stack.pop_back();
-    SendNumber(accumulator_temp);
+    return SendNumber(accumulator_temp);
 }
 
 const std::vector<MathEngine::Context>& MathEngine::GetContextStack() const
