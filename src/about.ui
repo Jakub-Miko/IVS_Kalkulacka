@@ -132,6 +132,9 @@
    <layout class="QGridLayout" name="gridLayout_4">
     <item row="0" column="0">
      <widget class="QPushButton" name="pushButton">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(74, 74, 74);</string>
+      </property>
       <property name="text">
        <string>Prirucka</string>
       </property>

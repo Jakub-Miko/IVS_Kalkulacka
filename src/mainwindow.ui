@@ -14,23 +14,24 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(90, 90, 90);</string>
+   <string notr="true">background-color: rgb(39, 39, 39)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">
 QPushButton {
-	color:rgb(0,0,0);
+	color: rgb(75, 150, 185);
 	border-radius:12px;
-    background-color: rgb(20, 140, 26);
+    /*background-color: rgb(20, 140, 26);*/
+	background: none;
 	gridline-color: rgb(255, 0, 4);
-	font: 22pt &quot;Impact&quot;;
+	font: 30pt &quot;Impact&quot;;
 }
 
 QPushButton:hover {
-	color:rgb(0,0,0);
-    background-color:rgb(17, 122, 23);
-	font: 22pt &quot;Impact&quot;;
+	color:rgb(52, 96, 162);
+    /*background-color:rgb(17, 122, 23);*/
+	/*background-color: rgb(133, 171, 191);*/
 };</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -48,6 +49,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>4</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="7" column="1">
@@ -59,7 +74,7 @@ QPushButton:hover {
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
       </property>
       <property name="text">
        <string>MOD</string>
@@ -78,7 +93,7 @@ QPushButton:hover {
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
       </property>
       <property name="text">
        <string>CE</string>
@@ -102,6 +117,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>6</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="11" column="4">
@@ -118,6 +147,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>3</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="7" column="2">
@@ -129,7 +172,7 @@ QPushButton:hover {
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
       </property>
       <property name="text">
        <string>|ABS|</string>
@@ -148,7 +191,7 @@ QPushButton:hover {
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
       </property>
       <property name="text">
        <string>C</string>
@@ -169,7 +212,7 @@ QPushButton:hover {
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>50</height>
+        <height>30</height>
        </size>
       </property>
      </spacer>
@@ -226,6 +269,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>5</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="9" column="5">
@@ -279,6 +336,20 @@ QPushButton:hover {
       </property>
       <property name="path" stdset="0">
        <string>7</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
       </property>
      </widget>
     </item>
@@ -353,6 +424,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>0</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="9" column="4">
@@ -368,6 +453,20 @@ QPushButton:hover {
       </property>
       <property name="path" stdset="0">
        <string>9</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
       </property>
      </widget>
     </item>
@@ -404,6 +503,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>2</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="8" column="3">
@@ -439,6 +552,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>8</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="7" column="5">
@@ -450,7 +577,7 @@ QPushButton:hover {
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
       </property>
       <property name="text">
        <string>⌫</string>
@@ -463,9 +590,12 @@ QPushButton:hover {
     <item row="8" column="1" rowspan="5">
      <widget class="QStackedWidget" name="MOD_container">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_1">
+       <property name="styleSheet">
+        <string notr="true">font: 38pt &quot;Impact&quot;;</string>
+       </property>
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="leftMargin">
          <number>0</number>
@@ -496,6 +626,20 @@ QPushButton:hover {
           <property name="path" stdset="0">
            <string>g1</string>
           </property>
+          <property name="color_hover" stdset="0">
+           <color>
+            <red>52</red>
+            <green>96</green>
+            <blue>162</blue>
+           </color>
+          </property>
+          <property name="color_default" stdset="0">
+           <color>
+            <red>75</red>
+            <green>150</green>
+            <blue>185</blue>
+           </color>
+          </property>
          </widget>
         </item>
         <item row="1" column="0">
@@ -510,7 +654,7 @@ QPushButton:hover {
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>C</string>
+           <string>c</string>
           </property>
           <property name="path" stdset="0">
            <string>C</string>
@@ -548,7 +692,7 @@ QPushButton:hover {
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>Pi</string>
+           <string>π</string>
           </property>
           <property name="path" stdset="0">
            <string>Pi</string>
@@ -577,6 +721,9 @@ QPushButton:hover {
        </layout>
       </widget>
       <widget class="QWidget" name="page_2">
+       <property name="styleSheet">
+        <string notr="true">font: 26pt &quot;Impact&quot;;</string>
+       </property>
        <layout class="QGridLayout" name="gridLayout_3">
         <property name="leftMargin">
          <number>0</number>
@@ -610,6 +757,9 @@ QPushButton:hover {
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 30pt &quot;Impact&quot;;</string>
           </property>
           <property name="text">
            <string>!</string>
@@ -673,6 +823,20 @@ QPushButton:hover {
       <property name="path" stdset="0">
        <string>1</string>
       </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
     <item row="3" column="1" colspan="5">
@@ -701,12 +865,10 @@ QPushButton:hover {
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(150, 150, 150);
-font: 10pt &quot;Impact&quot;;
-border-top: 2px solid black;
-border-top-color: rgb(84, 84, 84);
-border-right: 2px solid black;
-border-right-color: rgb(84, 84, 84);</string>
+         <string notr="true">background: none;
+color: rgb(255, 255, 255);
+font: 17pt &quot;Impact&quot;;
+border:none</string>
         </property>
         <property name="text">
          <string/>
@@ -731,12 +893,10 @@ border-right-color: rgb(84, 84, 84);</string>
          </sizepolicy>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(150, 150, 150);
-font: 10pt &quot;Impact&quot;;
-border-top: 2px solid black;
-border-top-color: rgb(84, 84, 84);
-border-left: 2px solid black;
-border-left-color: rgb(84, 84, 84);</string>
+         <string notr="true">background: none;
+color: rgb(255, 255, 255);
+font: 17pt &quot;Impact&quot;;
+border:none</string>
         </property>
         <property name="text">
          <string>0</string>
@@ -767,10 +927,10 @@ border-left-color: rgb(84, 84, 84);</string>
          <cursorShape>ArrowCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(150, 150, 150);
-font: 17pt &quot;Impact&quot;;
-border: 2px solid black;
-border-color: rgb(84, 84, 84);</string>
+         <string notr="true">background-color: rgb(39, 39, 39);
+color: rgb(255, 255, 255);
+font: 24pt &quot;Impact&quot;;
+border:none</string>
         </property>
         <property name="text">
          <string/>
@@ -793,7 +953,7 @@ border-color: rgb(84, 84, 84);</string>
      <x>0</x>
      <y>0</y>
      <width>457</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMenu">
