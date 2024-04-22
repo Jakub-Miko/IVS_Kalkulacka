@@ -34,14 +34,13 @@
 	\\
 	In the calculator, binary operations function as follows:\\
 	The first input is expected to be a number, followed by the operation symbol and then a second number.\\
-	The syntax for unary operations always expects the numerical input first followed by the operation.\\
 	In both cases upon entering another operation symbol the result of the previous equation is calculated, stored in the accumulator and then used as the first operand for the new operation.\\
 	\\
 	Note:\\
 	The Root operation works in the same way as any other binary function, where the first operand is the exponent and the second operand is the coefficient. \\
 	\\
 	Unary operations function as follows:\\
-	All unary operations must by used after the argument and will immediately calculate the result as if you had pressed equals with a binary operation. if no value has bee typed in beforehand, the operation will be performed on the result value in the currently opened parenthesis.\\
+	All unary operations must by used after the argument and will immediately calculate the result as if you had pressed equals with a binary operation. if no value has been typed in beforehand, the operation will be performed on the result value in the currently opened parenthesis.\\
 	\\
 	The calculator also provides parenthesis. Opening a parenthesis saves the accumulator value and ongoing operation then begins a new one. Closing it calculates the result of the new expression within the parenthesis and finishes the saved operation, by passing it the result of the new parenthesis as an argument. By pressing the equals sign, all open parenthesis are closed and the final result is calculated.
 	Note that this is not a parsing calculator so the result withing the parenthesis is calculated as you type, and as such no operator precedence applies.\\
