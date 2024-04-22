@@ -5,6 +5,7 @@
 #include "about.h"
 #include "qaudiooutput.h"
 #include "qmediaplayer.h"
+#include "math_engine.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,17 +26,60 @@ public:
 private slots:
     void number_clicked();
 
-    void keyReleaseEvent(QKeyEvent *);
+    void keyPressEvent(QKeyEvent *);
 
-    void on_pushButton_backspace_released();
+    void on_pushButton_backspace_clicked();
 
-    void on_pushButton_clearfull_released();
+    void on_pushButton_clearfull_clicked();
 
-    void on_pushButton_cleardisp_released();
+    void on_pushButton_cleardisp_clicked();
 
     void on_actionAbout_triggered();
 
-    void on_pushButton_mode_released();
+    void on_pushButton_mode_clicked();
+
+    void on_pushButton_plus_clicked();
+
+    void on_pushButton_minus_clicked();
+
+    void on_pushButton_mul_clicked();
+
+    void on_pushButton_div_clicked();
+
+    void on_pushButton_equals_clicked();
+
+    void on_pushButton_comma_clicked();
+
+    void on_pushButton_root_clicked();
+
+    void on_pushButton_power_clicked();
+
+    void on_pushButton_abs_clicked();
+
+    void on_pushButton_pi_clicked();
+
+    void on_pushButton_c_clicked();
+
+    void on_pushButton_e_clicked();
+
+    void on_pushButton_factorial_clicked();
+
+    void on_pushButton_log_clicked();
+
+    void on_pushButton_chngval_clicked();
+
+
+    void on_pushButton_sine_clicked();
+
+    void on_pushButton_cosine_clicked();
+
+    void on_pushButton_tangent_clicked();
+
+    void on_pushButton_open_clicked();
+
+    void on_pushButton_close_clicked();
+
+
 
 private:
     QMediaPlayer* player;
@@ -43,5 +87,6 @@ private:
     Ui::MainWindow *ui;
     about *about_window;
     bool mode_choice;
+    MathEngine math;
 };
 #endif // MAINWINDOW_H

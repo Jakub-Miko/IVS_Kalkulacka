@@ -7,182 +7,37 @@
     <x>0</x>
     <y>0</y>
     <width>457</width>
-    <height>610</height>
+    <height>711</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(39, 39, 39);
+color: rgb(255,255,255);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">
+QPushButton {
+	color: rgb(75, 150, 185);
+	border-radius:12px;
+    /*background-color: rgb(20, 140, 26);*/
+	background: none;
+	gridline-color: rgb(255, 0, 4);
+	font: 30pt &quot;Impact&quot;;
+}
+
+QPushButton:hover {
+	color:rgb(52, 96, 162);
+    /*background-color:rgb(17, 122, 23);*/
+	/*background-color: rgb(133, 171, 191);*/
+};</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="5" column="2">
-     <widget class="QPushButton" name="pushButton_number_7">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>7</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="3">
-     <widget class="QPushButton" name="pushButton_square">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>^</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="5">
-     <widget class="QPushButton" name="pushButton_plus">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>+</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="4">
-     <widget class="QPushButton" name="pushButton_div">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>/</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="4">
-     <widget class="QPushButton" name="pushButton_clearfull">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>C</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QPushButton" name="pushButton_number_8">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>8</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QPushButton" name="pushButton_mode">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>MOD</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1" colspan="5">
-     <widget class="QLabel" name="equation">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="5">
-     <widget class="QPushButton" name="pushButton_backspace">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>⌫</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="2">
-     <widget class="QPushButton" name="pushButton_chngval">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>+/-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2">
-     <widget class="QPushButton" name="pushButton_number_1">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>1</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="5" rowspan="2">
-     <widget class="QPushButton" name="pushButton_equals">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>=</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="5">
-     <widget class="QPushButton" name="pushButton_minus">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
-     <widget class="QPushButton" name="pushButton_number_4">
+    <item row="10" column="2">
+     <widget class="SvgButton" name="pushButton_number_4">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -192,87 +47,45 @@
       <property name="text">
        <string>4</string>
       </property>
+      <property name="path" stdset="0">
+       <string>4</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
-    <item row="5" column="4">
-     <widget class="QPushButton" name="pushButton_number_9">
+    <item row="7" column="1">
+     <widget class="QPushButton" name="pushButton_mode">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="text">
-       <string>9</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="3">
-     <widget class="QPushButton" name="pushButton_number_5">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+      <property name="styleSheet">
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
       </property>
       <property name="text">
-       <string>5</string>
+       <string>MOD</string>
       </property>
-     </widget>
-    </item>
-    <item row="7" column="4">
-     <widget class="QPushButton" name="pushButton_number_3">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>3</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="3">
-     <widget class="QPushButton" name="pushButton_number_0">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>0</string>
+      <property name="path" stdset="0">
+       <string>MOD</string>
       </property>
      </widget>
     </item>
     <item row="7" column="3">
-     <widget class="QPushButton" name="pushButton_number_2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>2</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="5">
-     <widget class="QPushButton" name="pushButton_mul">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>*</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="3">
      <widget class="QPushButton" name="pushButton_cleardisp">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -280,52 +93,19 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="styleSheet">
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
+      </property>
       <property name="text">
+       <string>CE</string>
+      </property>
+      <property name="path" stdset="0">
        <string>CE</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="4">
-     <widget class="QPushButton" name="pushButton_comma">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>,</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QPushButton" name="pushButton_root">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>√</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
-     <widget class="QPushButton" name="pushButton_abs">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>|ABS|</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="4">
-     <widget class="QPushButton" name="pushButton_number_6">
+    <item row="10" column="4">
+     <widget class="SvgButton" name="pushButton_number_6">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -335,9 +115,94 @@
       <property name="text">
        <string>6</string>
       </property>
+      <property name="path" stdset="0">
+       <string>6</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="11" column="4">
+     <widget class="SvgButton" name="pushButton_number_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>3</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
+     <widget class="QPushButton" name="pushButton_abs">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
+      </property>
+      <property name="text">
+       <string>|ABS|</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>|ABS|</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="4">
+     <widget class="QPushButton" name="pushButton_clearfull">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
+      </property>
+      <property name="text">
+       <string>C</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>C</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -348,45 +213,390 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>50</height>
+        <height>30</height>
        </size>
       </property>
      </spacer>
     </item>
-    <item row="1" column="0" colspan="6">
-     <widget class="QLineEdit" name="display">
-      <property name="minimumSize">
-       <size>
-        <width>10</width>
-        <height>80</height>
-       </size>
+    <item row="8" column="2">
+     <widget class="QPushButton" name="pushButton_root">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>80</height>
-       </size>
-      </property>
-      <property name="cursor">
-       <cursorShape>ArrowCursor</cursorShape>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string/>
+       <string>√</string>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
+      <property name="path" stdset="0">
+       <string>√</string>
       </property>
      </widget>
     </item>
-    <item row="4" column="1" rowspan="5">
+    <item row="11" column="5" rowspan="2">
+     <widget class="QPushButton" name="pushButton_equals">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>=</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>=</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="3">
+     <widget class="SvgButton" name="pushButton_number_5">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>5</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>5</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="5">
+     <widget class="QPushButton" name="pushButton_minus">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="5">
+     <widget class="QPushButton" name="pushButton_plus">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>+</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2">
+     <widget class="SvgButton" name="pushButton_number_7">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>7</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>7</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="4">
+     <widget class="QPushButton" name="pushButton_div">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>/</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>/</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="5">
+     <widget class="QPushButton" name="pushButton_mul">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>*</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>*</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="4">
+     <widget class="QPushButton" name="pushButton_comma">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>,</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>,</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="3">
+     <widget class="SvgButton" name="pushButton_number_0">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>0</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="4">
+     <widget class="SvgButton" name="pushButton_number_9">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>9</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>9</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="2">
+     <widget class="QPushButton" name="pushButton_chngval">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>+/-</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>+/-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="3">
+     <widget class="SvgButton" name="pushButton_number_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>2</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>2</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="3">
+     <widget class="QPushButton" name="pushButton_power">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>^</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>^</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="3">
+     <widget class="SvgButton" name="pushButton_number_8">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>8</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>8</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="5">
+     <widget class="QPushButton" name="pushButton_backspace">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 26pt &quot;Impact&quot;;</string>
+      </property>
+      <property name="text">
+       <string>⌫</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>⌫</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1" rowspan="5">
      <widget class="QStackedWidget" name="MOD_container">
       <property name="currentIndex">
        <number>0</number>
       </property>
       <widget class="QWidget" name="page_1">
+       <property name="styleSheet">
+        <string notr="true">font: 38pt &quot;Impact&quot;;</string>
+       </property>
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="leftMargin">
          <number>0</number>
@@ -401,15 +611,35 @@
          <number>0</number>
         </property>
         <item row="2" column="0">
-         <widget class="QPushButton" name="pushButton_e">
+         <widget class="SvgButton" name="pushButton_e">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="text">
            <string>E</string>
+          </property>
+          <property name="path" stdset="0">
+           <string>g1</string>
+          </property>
+          <property name="color_hover" stdset="0">
+           <color>
+            <red>52</red>
+            <green>96</green>
+            <blue>162</blue>
+           </color>
+          </property>
+          <property name="color_default" stdset="0">
+           <color>
+            <red>75</red>
+            <green>150</green>
+            <blue>185</blue>
+           </color>
           </property>
          </widget>
         </item>
@@ -421,20 +651,32 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="text">
+           <string>c</string>
+          </property>
+          <property name="path" stdset="0">
            <string>C</string>
           </property>
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QPushButton" name="pushButton_k">
+         <widget class="QPushButton" name="pushButton_open">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="text">
+           <string>(</string>
+          </property>
+          <property name="path" stdset="0">
            <string>k</string>
           </property>
          </widget>
@@ -447,20 +689,32 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="text">
+           <string>π</string>
+          </property>
+          <property name="path" stdset="0">
            <string>Pi</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QPushButton" name="pushButton_h">
+         <widget class="QPushButton" name="pushButton_close">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="text">
+           <string>)</string>
+          </property>
+          <property name="path" stdset="0">
            <string>h</string>
           </property>
          </widget>
@@ -468,6 +722,9 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_2">
+       <property name="styleSheet">
+        <string notr="true">font: 26pt &quot;Impact&quot;;</string>
+       </property>
        <layout class="QGridLayout" name="gridLayout_3">
         <property name="leftMargin">
          <number>0</number>
@@ -481,21 +738,8 @@
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="pushButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>ln</string>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="0">
-         <widget class="QPushButton" name="pushButton_4">
+         <widget class="QPushButton" name="pushButton_cosine">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -508,12 +752,15 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButton_factorial">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 30pt &quot;Impact&quot;;</string>
           </property>
           <property name="text">
            <string>!</string>
@@ -521,7 +768,7 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="pushButton_sine">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -534,7 +781,7 @@
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QPushButton" name="pushButton_5">
+         <widget class="QPushButton" name="pushButton_tangent">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -546,9 +793,118 @@
           </property>
          </widget>
         </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButton_log">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>ln</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
+    </item>
+    <item row="11" column="2">
+     <widget class="SvgButton" name="pushButton_number_1">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>1</string>
+      </property>
+      <property name="path" stdset="0">
+       <string>1</string>
+      </property>
+      <property name="color_hover" stdset="0">
+       <color>
+        <red>52</red>
+        <green>96</green>
+        <blue>162</blue>
+       </color>
+      </property>
+      <property name="color_default" stdset="0">
+       <color>
+        <red>75</red>
+        <green>150</green>
+        <blue>185</blue>
+       </color>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" colspan="5">
+     <layout class="QGridLayout" name="displaybox">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="equation">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: none;
+color: rgb(255, 255, 255);
+font: 17pt &quot;Impact&quot;;
+border:none</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLineEdit" name="display">
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>80</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(39, 39, 39);
+color: rgb(255, 255, 255);
+font: 24pt &quot;Impact&quot;;
+border:none</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -561,6 +917,16 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">
+QMenu::item:selected { 
+    background-color: rgb(100, 100, 100);
+}
+
+QMenuBar::item:selected { 
+    background-color: rgb(100, 100, 100);
+}</string>
+   </property>
    <widget class="QMenu" name="menuMenu">
     <property name="title">
      <string>Menu</string>
@@ -568,6 +934,12 @@
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>2</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
     <property name="title">
      <string>Settings</string>
     </property>
@@ -591,6 +963,16 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SvgButton</class>
+   <extends>QPushButton</extends>
+   <header location="global">svgbutton.h</header>
+   <slots>
+    <slot>slot1()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
