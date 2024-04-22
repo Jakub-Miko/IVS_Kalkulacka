@@ -106,3 +106,9 @@ CMakeLists.txt.user*
 *.exe
 
 .vscode/
+
+*build*
+.toc
+.synctex.gz
+.log
+.aux
