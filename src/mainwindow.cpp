@@ -5,6 +5,7 @@
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QMessageBox>
+#include <QFontDatabase>
 #include "mathlibrary.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -13,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("E-Calculator");
+    QFontDatabase::addApplicationFont(":/resources/impact.ttf");
+
 
     if(!QMediaDevices::defaultAudioOutput().isNull()) {
         output = new QAudioOutput(this);
