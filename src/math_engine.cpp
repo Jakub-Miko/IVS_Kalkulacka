@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <cmath>
 #include <sstream>
-#include <iomanip>>
+#include <iomanip>
 
 #define ROUNDING_EPSILON 1.0e-15
 
