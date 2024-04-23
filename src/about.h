@@ -18,6 +18,7 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_doc_clicked();
 private:
     Ui::about *ui;
 };
