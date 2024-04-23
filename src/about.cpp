@@ -1,3 +1,12 @@
+/** @file about.cpp
+ * @brief Representation of the "about app" window of the application.
+ *
+ * This class represents the "about application" window of the application.
+ * It contains informations about license, authors, documentation and
+ * user manual.
+ *
+ * @author Patrik Contofalsky, Jakub Miko
+*/
 #include "about.h"
 #include "qdesktopservices.h"
 #include "ui_about.h"
