@@ -65,6 +65,11 @@ install(TARGETS Ivs_Calculator
 install(DIRECTORY "../doc/" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/)
 install(FILES "../LICENSE" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/)
 install(FILES "../user_guide/user_guide.pdf" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/)
+if(UNIX AND NOT APPLE)
+    install(FILES "./Ivs_Calculator.desktop" DESTINATION "share/applications")
+    install(FILES "./svgs/EEEE_logo.svg" DESTINATION "share/icons/hicolor/scalable/apps")
+endif()
+
 message(${CMAKE_INSTALL_DATADIR})
 
 if(QT_VERSION_MAJOR EQUAL 6)
