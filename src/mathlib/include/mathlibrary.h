@@ -1,3 +1,6 @@
+/** @file mathlibrary.h
+ *  @brief Library for functions mathematical functions used by the calculator
+*/
 #pragma once
 
 #include <cstdint>
