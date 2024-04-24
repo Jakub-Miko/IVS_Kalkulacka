@@ -10,7 +10,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QKeyEvent>
-#include <QDebug>
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QMessageBox>
@@ -66,7 +65,6 @@ void MainWindow::number_clicked()
 
     LabelNumber = (ui->display->text() + Button->text());
     ui->display->setText(LabelNumber);
-    //ui->display->setAlignment(Qt::AlignRight);
 
 }
 
@@ -190,9 +188,6 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
     case Qt::Key_ParenRight:
         on_pushButton_close_clicked();
         break;
-    case Qt::Key_Exclam:
-        on_pushButton_factorial_clicked();
-        break;
     case Qt::Key_Comma:
     case Qt::Key_Period:
         on_pushButton_comma_clicked();
@@ -207,6 +202,9 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
     case Qt::Key_Delete:
         ui->display->setText("");
         break;
+    case Qt::Key_R:
+        on_pushButton_clearfull_clicked();
+        break;
     }
 
     // SWITCH CASES FOR OPERATIONS
@@ -218,12 +216,24 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
         on_pushButton_minus_clicked();
         break;
     case Qt::Key_Asterisk:
-        qInfo("More");
         on_pushButton_mul_clicked();
         break;
     case Qt::Key_Slash:
         on_pushButton_div_clicked();
         break;
+    case Qt::Key_Exclam:
+        on_pushButton_factorial_clicked();
+        break;
+    case Qt::Key_AsciiCircum:
+        on_pushButton_power_clicked();
+        break;
+    case Qt::Key_L:
+        on_pushButton_log_clicked();
+        break;
+    case Qt::Key_A:
+        on_pushButton_abs_clicked();
+        break;
+    case Qt::Key_Equal:
     case Qt::Key_Enter:
     case Qt::Key_Return:
         on_pushButton_equals_clicked();
