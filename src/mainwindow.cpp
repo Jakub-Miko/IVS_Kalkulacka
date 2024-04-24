@@ -1,7 +1,15 @@
+/** @file mainwindow.cpp
+ * @brief Representation of the main window of the application.
+ *
+ * This class represents the main window of the application. It contains
+ * functionalities for using the math_engine and interacting with the
+ * user interface.
+ *
+ * @author Patrik Contofalsky, Jakub Miko
+*/
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QKeyEvent>
-#include <QDebug>
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QMessageBox>
@@ -57,20 +65,43 @@ void MainWindow::number_clicked()
 
     LabelNumber = (ui->display->text() + Button->text());
     ui->display->setText(LabelNumber);
-    //ui->display->setAlignment(Qt::AlignRight);
 
 }
 
+/**
+ * @brief Add a number to the display.
+ *
+ * Adds the clicked number to the display widget.
+ *
+ * @param ui Pointer to the main window's user interface.
+ * @param NextNumber QString number to add to the display.
+*/
 void AddNumber(Ui::MainWindow* ui, QString NextNumber) {
     QString LabelNumber = (ui->display->text() + NextNumber);
     ui->display->setText(LabelNumber);
 }
 
+/**
+ * @brief Replaces a part of string with another string.
+ *
+ * @param Text QString of the original string.
+ * @param Find QString of the substring to find.
+ * @param Replace QString of the substring to replace with.
+ * @return QString The modified string.
+*/
 QString ReplaceString(QString Text, QString Find, QString Replace) {
     Text.replace(Find, Replace);
     return Text;
 }
 
+/**
+ * @brief Sends the current number on the display to the math engine.
+ *
+ * Sends the current number on the display to the math engine for further processing.
+ *
+ * @param ui Pointer to the main window's user interface.
+ * @param math Reference to the math engine instance.
+*/
 void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
     if (!ui->display->text().isEmpty()) {
         long double ld = std::strtold(ReplaceString(ui->display->text(), ",", ".").toLatin1().data(),nullptr);
@@ -81,14 +112,16 @@ void SendNumberToEngine(Ui::MainWindow* ui, MathEngine& math) {
     }
 }
 
+/**
+ * @brief Shows the result of the calculation in the equation display.
+ *
+ * Returns the result of the calculation from the math engine
+ * and displays it in the equation display.
+ *
+ * @param ui Pointer to the main window's user interface.
+ * @param math Reference to the math engine instance.
+*/
 void ShowResult(Ui::MainWindow* ui, MathEngine& math) {
-    // long double ld = math.GetAccumulator();
-    // ld = std::round(Power(10, PRECISION_OF_NUMBER) * ld) / Power(10, PRECISION_OF_NUMBER);
-    // std::stringstream ss;
-    // ss << std::setprecision(PRECISION_OF_NUMBER) << ld;
-    // std::string text = ss.str();
-    // //ui->equation->setText(ReplaceString(QString::number((double)ld,'F', PRECISION_OF_NUMBER), ".", ","));
-    // ui->equation->setText(ReplaceString(QString::fromStdString(text), ",", ","));
     ui->display->setText("");
 
     ui->equation->setText(math.GetDisplay().c_str());
@@ -169,6 +202,9 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
     case Qt::Key_Delete:
         ui->display->setText("");
         break;
+    case Qt::Key_R:
+        on_pushButton_clearfull_clicked();
+        break;
     }
 
     // SWITCH CASES FOR OPERATIONS
@@ -180,12 +216,24 @@ void MainWindow::keyPressEvent(QKeyEvent * event)
         on_pushButton_minus_clicked();
         break;
     case Qt::Key_Asterisk:
-        qInfo("More");
         on_pushButton_mul_clicked();
         break;
     case Qt::Key_Slash:
         on_pushButton_div_clicked();
         break;
+    case Qt::Key_Exclam:
+        on_pushButton_factorial_clicked();
+        break;
+    case Qt::Key_AsciiCircum:
+        on_pushButton_power_clicked();
+        break;
+    case Qt::Key_L:
+        on_pushButton_log_clicked();
+        break;
+    case Qt::Key_A:
+        on_pushButton_abs_clicked();
+        break;
+    case Qt::Key_Equal:
     case Qt::Key_Enter:
     case Qt::Key_Return:
         on_pushButton_equals_clicked();

@@ -1,4 +1,4 @@
-/** @file svgbutton.h
+/** @file svgbutton.cpp
  * @brief Custom PushButton for svg rendering with hover effects
  *
  * @author Jakub Miko

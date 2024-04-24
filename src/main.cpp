@@ -1,3 +1,7 @@
+/** @file main.cpp
+ * @brief Entry point of the application.
+ * @author Patrik Contofalsky, Jakub Miko
+*/
 #include "mainwindow.h"
 #include <iostream>
 #include <QApplication>
