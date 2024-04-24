@@ -1,0 +1,14 @@
+Rozdiely medzi plánom a skutočnosťou:
+-Matematická knižnica - Základné funkcie boli vytvorené v stanovenom termíne
+		      - Po termíne sme poprídavali ďaľšie funkcie, konštanty a úpravy (zmena typov na stdint)
+		      - 11.4.2024 (plán 05.4.2024)
+
+
+-Testy mat. knižnice (tdd) - Testy základných funkcií - 1.4.2024
+		     	   - Neskôr sa ešte pridávali ďaľsie funkcie a opravy
+		     	   - 10.4.2024 (plán 25.3.2024)
+
+-Profiling - Oneskorenie, zle prečítané zadanie, treba použiť naše funkcie z mathlib
+  	   - 18.4.2024 (plán 25.3.2024)
+
+-UI layout - 17.4.2024 (plán 1.4.2024)
