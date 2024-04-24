@@ -22,3 +22,10 @@ void about::on_pushButton_clicked()
     QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
 }
 
+
+void about::on_pushButton_doc_clicked()
+{
+    QString file_path = QStandardPaths::locate(QStandardPaths::AppDataLocation, "html/index.html", QStandardPaths::LocateOption::LocateFile);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
+}
+
