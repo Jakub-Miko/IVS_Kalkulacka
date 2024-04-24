@@ -1,9 +1,14 @@
+/** @file math_engine.cpp
+ * @brief Abstraction of UI math logic
+ *
+ * @author Jakub Miko
+*/
 #include "math_engine.h"
 #include <mathlibrary.h>
 #include <stdexcept>
 #include <cmath>
 #include <sstream>
-#include <iomanip>>
+#include <iomanip>
 
 #define ROUNDING_EPSILON 1.0e-15
 
