@@ -1,4 +1,4 @@
-xmikoja00 100 (sprava repozitara, vlastne komponenty do UI, CMake, Makefile )
+xmikoja00 100 (sprava repozitara, vlastne komponenty do UI, CMake, Makefile, CI testy, logika za UI, code review, mockup)
 xjordan00 100 (testy, dokumentacia)
 xcontop00 100 (UI, logika za UI)
-xziklaa00 100 (Matematicka kniznica, Profiling)
+xziklaa00 100 (Matematicka kniznica, Profiling, debugging)
