@@ -7,13 +7,13 @@ Type=Application
 Version=1.0
 
 # The name of the application
-Name=Ivs_Calculator
+Name=E-Calculator
 
 # A comment which can/will be used as a tooltip
 Comment=Calculator by Team EEEEEEEE
 
 # The executable of the application, possibly with arguments.
-Exec=Ivs_Calculator
+Exec=E-Calculator
 
 # The name of the icon that will be used to display this entry
 Icon=EEEE_logo

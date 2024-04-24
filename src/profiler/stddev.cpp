@@ -53,7 +53,7 @@ int main()
     }
 
     long double deviation = CalculateSampleStandardDeviation(arr);
-    std::cout << "The standard deviation is: " << deviation << std::endl;
+    std::cout << deviation << std::endl;
 
     return 0; 
 }
