@@ -44,5 +44,5 @@ To uninstall the application run:
 License
 -------
 
-[LICENSE](./LICENSE)
+[LICENSE](../../LICENSE)
 
