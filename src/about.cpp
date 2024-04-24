@@ -27,11 +27,7 @@ about::~about()
 
 void about::on_pushButton_clicked()
 {
-<<<<<<< HEAD
-    QString file_path = QStandardPaths::locate(QStandardPaths::AppDataLocation, "LICENSE", QStandardPaths::LocateOption::LocateFile);
-=======
     QString file_path = QStandardPaths::locate(QStandardPaths::AppDataLocation, "user_guide.pdf", QStandardPaths::LocateOption::LocateFile);
->>>>>>> 6d9db838dc52bbbd1be833c2d71252c8b28bbb64
     QDesktopServices::openUrl(QUrl::fromLocalFile(file_path));
 }
 
