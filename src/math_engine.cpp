@@ -1,3 +1,8 @@
+/** @file math_engine.cpp
+ * @brief Abstraction of UI math logic
+ *
+ * @author Jakub Miko
+*/
 #include "math_engine.h"
 #include <mathlibrary.h>
 #include <stdexcept>
