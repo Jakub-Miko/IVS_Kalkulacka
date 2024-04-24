@@ -22,10 +22,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("E-Calculator");
     setWindowIcon(QIcon(":/resources/logo"));
-
     if(!QMediaDevices::defaultAudioOutput().isNull()) {
         output = new QAudioOutput(this);
 	    player = new QMediaPlayer(this);
+        player->setSource(QUrl("qrc:/resources/easter_egg.mp3"));
     }
     
     connect(ui->pushButton_number_0, SIGNAL(clicked()), this, SLOT(number_clicked()));
@@ -51,7 +51,8 @@ MainWindow::~MainWindow()
 void MainWindow::PlaySound()
 {
     if(!output) return;
-    player->setSource(QUrl("qrc:/resources/easter_egg.mp3"));
+    player->stop();
+    player->setPosition(0);
     player->setAudioOutput(output);
     output->setVolume(50);
     player->play();
