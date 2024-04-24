@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
         output = new QAudioOutput(this);
 	    player = new QMediaPlayer(this);
         player->setSource(QUrl("qrc:/resources/easter_egg.mp3"));
+        player->setAudioOutput(output);
     }
     
     connect(ui->pushButton_number_0, SIGNAL(clicked()), this, SLOT(number_clicked()));
@@ -53,7 +54,6 @@ void MainWindow::PlaySound()
     if(!output) return;
     player->stop();
     player->setPosition(0);
-    player->setAudioOutput(output);
     output->setVolume(50);
     player->play();
 }
