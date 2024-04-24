@@ -39,14 +39,12 @@ Once the debpackage is downloaded run:
 
 To uninstall the application run:
 
-    sudo apt remove ivs_calcualtor
+    sudo apt remove ivs-calculator-e-calculator
 
 License
 -------
 
 [LICENSE](./LICENSE)
-
----
 
 ---
 
