@@ -1,3 +1,6 @@
+/** @file mainwindow.h
+ * @brief The main window containing the actual calculator
+*/
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
