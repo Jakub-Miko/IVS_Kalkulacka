@@ -112,4 +112,4 @@ CMakeLists.txt.user*
 .synctex.gz
 .log
 .aux
-/doc/
+/doc/*
