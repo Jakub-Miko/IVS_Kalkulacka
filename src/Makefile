@@ -1,4 +1,4 @@
-.PHONY: all clean run dependencies build/Ivs_Calculator pack prof doc
+.PHONY: all clean run dependencies build/Ivs_Calculator pack prof doc install uninstall
 
 all: dependencies build/Ivs_Calculator doc pack 
 
@@ -25,3 +25,9 @@ prof: build/Makefile
 
 doc:
 	doxygen
+
+install: build/Ivs_Calculator
+	cd build && sudo make install
+
+uninstall: install
+	cd build && sudo xargs rm < install_manifest.txt

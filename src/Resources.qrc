@@ -13,5 +13,6 @@
         <file alias="g1">svgs/g1.svg</file>
         <file>easter_egg.mp3</file>
         <file>impact.ttf</file>
+        <file alias="logo">svgs/EEEE_logo.svg</file>
     </qresource>
 </RCC>

@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("E-Calculator");
-
+    setWindowIcon(QIcon(":/resources/logo"));
 
     if(!QMediaDevices::defaultAudioOutput().isNull()) {
         output = new QAudioOutput(this);

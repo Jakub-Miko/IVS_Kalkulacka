@@ -60,11 +60,16 @@ install(TARGETS Ivs_Calculator
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    COMPONENT Ivs_Calculator
 )
+install(DIRECTORY "../doc/" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/ COMPONENT Ivs_Calculator)
+install(FILES "../LICENSE" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/ COMPONENT Ivs_Calculator)
+install(FILES "../user_guide/user_guide.pdf" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/ COMPONENT Ivs_Calculator)
+if(UNIX AND NOT APPLE)
+    install(FILES "./Ivs_Calculator.desktop" DESTINATION "share/applications" COMPONENT Ivs_Calculator)
+    install(FILES "./svgs/EEEE_logo.svg" DESTINATION "share/icons/hicolor/scalable/apps" COMPONENT Ivs_Calculator)
+endif()
 
-install(DIRECTORY "../doc/" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/)
-install(FILES "../LICENSE" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/)
-install(FILES "../user_guide/user_guide.pdf" DESTINATION ${CMAKE_INSTALL_DATADIR}/Ivs_Calculator/)
 message(${CMAKE_INSTALL_DATADIR})
 
 if(QT_VERSION_MAJOR EQUAL 6)
@@ -75,6 +80,8 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Team EEEEE")
 set(CPACK_PACKAGE_NAME "IVS_Calculator")
 set(CPACK_PACKAGE_VERSION_MAJOR 0)
 set(CPACK_PACKAGE_VERSION_MAJOR 1)
+set(CPACK_DEB_COMPONENT_INSTALL ON)
+set(CPACK_COMPONENTS_ALL Ivs_Calculator Profiler)
 set(CPACK_PACKAGE_DESCRIPTION "IVSCalculator from Team EEEEE")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6core6, libqt6gui6, libqt6core5compat6, libqt6widgets6, qt6-qpa-plugins, libqt6multimedia6, libqt6svg6, libqt6svgwidgets6")
 
